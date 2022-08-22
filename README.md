@@ -69,7 +69,7 @@ Message objects must follow the below structure.
 #### Example usage
 
 ```
-const { PublishEvent } = require('ffc-pay-event-publisher')
+const { PublishEvent } = require('ffc-ahwr-event-publisher')
 
 const eventPublisher = new PublishEvent(config)
 
@@ -78,11 +78,12 @@ await eventPublisher.sendEvent({
     properties: {
       id: '1234567890',
       sbi: '123456789',
+      cph: '123/456/789`
       checkpoint: 'tests-service',
       status : 'success',
       action: {
         type: 'processing',
-        message: 'Processing payment request',
+        message: 'Processing ahwr request',
         data: {
           test: 'test data'
         },
