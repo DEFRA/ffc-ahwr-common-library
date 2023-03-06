@@ -13,7 +13,8 @@ const eventSchema = joi.object({
       message: joi.string().required(),
       data: joi.object(),
       error: joi.string().allow(null, ''),
-      raisedBy: joi.string().required()
+      raisedBy: joi.string().required(),
+      raisedOn: joi.string().optional()
     })
   })
 })
