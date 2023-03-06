@@ -1,6 +1,6 @@
 {
   "name": "ffc-ahwr-event-publisher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Event sending npm module for FFC ahwr services",
   "main": "index.js",
   "repository": {
