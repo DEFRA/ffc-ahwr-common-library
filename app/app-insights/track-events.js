@@ -1,7 +1,7 @@
-module.exports = (appInsights, eventMessage) => {
+module.exports = (appInsights, eventMessages) => {
     if (appInsights !== undefined && appInsights.defaultClient !== undefined) {
-        eventMessage.forEach(event => {            
-            appInsights.defaultClient.trackEvent(event)
+        eventMessages.forEach(eventMessage => {            
+            appInsights.defaultClient.trackEvent(eventMessage)
         });
     }
   }
