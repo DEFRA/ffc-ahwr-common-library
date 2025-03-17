@@ -1,6 +1,6 @@
-const { PublishEvent, PublishEventBatch } = require('./app/event-publisher')
+const { PublishEvent, PublishEventBatch } = require("./app/event-publisher");
 
 module.exports = {
   PublishEvent,
-  PublishEventBatch
-}
+  PublishEventBatch,
+};

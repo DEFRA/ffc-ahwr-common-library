@@ -1,4 +1,5 @@
 # ffc-ahwr-event-publisher
+
 NPM module for publishing events
 
 ## Usage
@@ -12,21 +13,21 @@ npm install --save ffc-ahwr-event-publisher
 
 ### Configuration
 
-`name` - name of connection, if not supplied the address name will be used.  This value is also used in App Insights tracing
+`name` - name of connection, if not supplied the address name will be used. This value is also used in App Insights tracing
 
 `host` - Azure Service Bus namespace, for example, `myservicebus.servicebus.windows.net`
 
-`useCredentialChain` - Boolean value for whether to authenticate connection with using Azure's credential chain.  For example, set this to true if you wish to use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity).  If `false`, then `username` and `password` are required.
+`useCredentialChain` - Boolean value for whether to authenticate connection with using Azure's credential chain. For example, set this to true if you wish to use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity). If `false`, then `username` and `password` are required.
 
-`username` - Azure Service Bus Shared Access Key name for authentication.  Not required if `useCredentialChain` is `true`.
+`username` - Azure Service Bus Shared Access Key name for authentication. Not required if `useCredentialChain` is `true`.
 
-`password` - Azure Service Bus Shared Access Key value for authentication.  Not required if `useCredentialChain` is `true`.
+`password` - Azure Service Bus Shared Access Key value for authentication. Not required if `useCredentialChain` is `true`.
 
 `type` - Azure Service Bus entity to connect to, allows `queue`, `sessionQueue`, `topic` or `subscription`.
 
 `address` - Name of the Azure Service Bus queue, topic or subscription to connect to.
 
-`topic` - Required for subscription connections only.  The name of the topic the subscription belongs to.
+`topic` - Required for subscription connections only. The name of the topic the subscription belongs to.
 
 `appInsights` - Application Insights module if logging is required
 

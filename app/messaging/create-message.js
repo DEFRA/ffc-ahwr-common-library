@@ -3,8 +3,8 @@ const createMessage = (body, type, source, options) => {
     body,
     type,
     source,
-    ...options
-  }
-}
+    ...options,
+  };
+};
 
-module.exports = createMessage
+module.exports = createMessage;
