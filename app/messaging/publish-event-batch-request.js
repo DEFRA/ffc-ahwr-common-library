@@ -1,5 +1,5 @@
 import { MessageBatchSender } from "ffc-messaging";
-import { createMessage } from './create-message.js'
+import { createMessage } from "./create-message.js";
 
 export const publishEventBatchRequest = async (eventMessages, config) => {
   const messages = eventMessages.map((message) => {

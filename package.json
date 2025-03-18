@@ -43,6 +43,8 @@
     "ffc-messaging": "^2.10.2"
   },
   "babel": {
-    "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs"
+    ]
   }
 }
