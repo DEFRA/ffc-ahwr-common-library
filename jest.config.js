@@ -21,6 +21,7 @@ module.exports = {
       },
     ],
   ],
+  resetMocks: true,
   testEnvironment: "node",
   testPathIgnorePatterns: [],
   verbose: true,

@@ -2,7 +2,7 @@ import { trackEvents } from "../app-insights/track-events.js";
 import { validateEvent } from "./event-schema.js";
 const { publishEventRequest } = require("../messaging/publish-event-request.js");
 
-class PublishEvent {
+export class PublishEvent {
   constructor(config) {
     this.appInsights = config.appInsights;
     this.config = config;
@@ -17,5 +17,3 @@ class PublishEvent {
     }
   }
 }
-
-module.exports = PublishEvent;
