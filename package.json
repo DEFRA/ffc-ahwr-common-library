@@ -2,6 +2,9 @@
   "name": "ffc-ahwr-event-publisher",
   "version": "2.0.0",
   "description": "Event sending npm module for FFC ahwr services",
+  "engines": {
+    "node": ">=20"
+  },
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -19,6 +22,7 @@
   "contributors": [
     "Steve Dickinson steve.dickinson@defra.gov.uk"
   ],
+  "exports": ["./event-publisher/publish-event.js", "./event-publisher/publish-event-batch.js"],
   "license": "OGL-UK-3.0",
   "bugs": {
     "url": "https://github.com/DEFRA/ffc-ahwr-event-publisher/issues"
