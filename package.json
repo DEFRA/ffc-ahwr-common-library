@@ -22,11 +22,9 @@
   "contributors": [
     "Steve Dickinson steve.dickinson@defra.gov.uk"
   ],
-  "exports": [
-    "./index.js",
-    "./app/event-publisher/publish-event.js",
-    "./app/event-publisher/publish-event-batch.js"
-  ],
+  "exports": {
+    ".": "./index.js"
+  },
   "license": "OGL-UK-3.0",
   "bugs": {
     "url": "https://github.com/DEFRA/ffc-ahwr-event-publisher/issues"
