@@ -5,7 +5,6 @@
   "engines": {
     "node": ">=20"
   },
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DEFRA/ffc-ahwr-event-publisher.git"
