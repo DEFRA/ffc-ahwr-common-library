@@ -1,6 +1,6 @@
-const validateEvent = require("./event-schema");
-const { trackEvents } = require("../app-insights");
-const { publishEventBatchRequest } = require("../messaging");
+import { trackEvents } from "../app-insights/track-events.js";
+import { validateEvent } from "./event-schema.js";
+const { publishEventBatchRequest } = require("../messaging/publish-event-batch-request.js");
 
 class PublishEventBatch {
   constructor(config) {

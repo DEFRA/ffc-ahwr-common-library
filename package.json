@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Event sending npm module for FFC ahwr services",
   "main": "index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DEFRA/ffc-ahwr-event-publisher.git"
