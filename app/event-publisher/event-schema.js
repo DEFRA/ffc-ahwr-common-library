@@ -1,4 +1,4 @@
-const joi = require('joi')
+import joi from "joi";
 
 const eventSchema = joi.object({
   name: joi.string().required(),
@@ -13,22 +13,20 @@ const eventSchema = joi.object({
       type: joi.string().required(),
       message: joi.string().required(),
       data: joi.object(),
-      error: joi.string().allow(null, ''),
+      error: joi.string().allow(null, ""),
       raisedBy: joi.string().required(),
-      raisedOn: joi.string().optional()
-    })
-  })
-})
+      raisedOn: joi.string().optional(),
+    }),
+  }),
+});
 
-const validateEvent = (event) => {
-  const validate = eventSchema.validate(event)
+export const validateEvent = (event) => {
+  const { error } = eventSchema.validate(event);
 
-  if (validate.error) {
-    console.log('Event validation error', validate.error)
-    return false
+  if (error) {
+    console.log("Event validation error", error);
+    return false;
   }
 
-  return true
-}
-
-module.exports = validateEvent
+  return true;
+};

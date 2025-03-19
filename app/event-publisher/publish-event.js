@@ -1,19 +1,19 @@
-const validateEvent = require('./event-schema')
-const { trackEvent } = require('../app-insights')
-const { publishEventRequest } = require('../messaging')
+import { trackEvents } from "../app-insights/track-events.js";
+import { validateEvent } from "./event-schema.js";
+import { publishEventRequest } from "../messaging/publish-event-request.js";
 
-class PublishEvent {
-  constructor (config) {
-    this.appInsights = config.appInsights
-    this.config = config
+export class PublishEvent {
+  constructor(config) {
+    this.appInsights = config.appInsights;
+    this.config = config;
   }
 
-  async sendEvent (eventMessage) {
+  async sendEvent(eventMessage, trackViaInsights = false) {
     if (validateEvent(eventMessage)) {
-      await publishEventRequest(eventMessage, this.config)
-      trackEvent(eventMessage)
+      await publishEventRequest(eventMessage, this.config);
+      if (trackViaInsights) {
+        trackEvents(this.appInsights, [eventMessage]);
+      }
     }
   }
 }
-
-module.exports = PublishEvent

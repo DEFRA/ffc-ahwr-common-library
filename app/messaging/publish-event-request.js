@@ -1,13 +1,12 @@
-const { MessageSender } = require('ffc-messaging')
-const createMessage = require('./create-message')
+import { MessageSender } from "ffc-messaging";
+import { createMessage } from "./create-message.js";
 
-const publishEventRequest = async (eventMessage, config, type) => {
-  const eventSender = new MessageSender(config)
-  const messageType = eventMessage.properties.action.type
-  const source = eventMessage.properties.checkpoint
-  eventMessage.properties.action.raisedOn = eventMessage.properties.action.raisedOn || new Date().toISOString()
-  const message = createMessage(eventMessage, messageType, source)
-  await eventSender.sendMessage(message)
-}
-
-module.exports = publishEventRequest
+export const publishEventRequest = async (eventMessage, config) => {
+  const eventSender = new MessageSender(config);
+  const messageType = eventMessage.properties.action.type;
+  const source = eventMessage.properties.checkpoint;
+  eventMessage.properties.action.raisedOn =
+    eventMessage.properties.action.raisedOn || new Date().toISOString();
+  const message = createMessage(eventMessage, messageType, source);
+  await eventSender.sendMessage(message);
+};

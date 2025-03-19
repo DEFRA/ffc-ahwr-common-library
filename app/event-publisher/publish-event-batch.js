@@ -1,19 +1,19 @@
-const validateEvent = require('./event-schema')
-const { trackEvents } = require('../app-insights')
-const { publishEventBatchRequest } = require('../messaging')
+import { trackEvents } from "../app-insights/track-events.js";
+import { validateEvent } from "./event-schema.js";
+import { publishEventBatchRequest } from "../messaging/publish-event-batch-request.js";
 
-class PublishEventBatch {
-  constructor (config) {
-    this.appInsights = config.appInsights
-    this.config = config
+export class PublishEventBatch {
+  constructor(config) {
+    this.appInsights = config.appInsights;
+    this.config = config;
   }
 
-  async sendEvents (eventMessages) {
-    if (eventMessages.every(eventMessage => validateEvent(eventMessage))) {
-      await publishEventBatchRequest(eventMessages, this.config)
-      trackEvents(this.appInsights, eventMessages)
+  async sendEvents(eventMessages, trackViaInsights = false) {
+    if (eventMessages.every((eventMessage) => validateEvent(eventMessage))) {
+      await publishEventBatchRequest(eventMessages, this.config);
+      if (trackViaInsights) {
+        trackEvents(this.appInsights, eventMessages);
+      }
     }
   }
 }
-
-module.exports = PublishEventBatch
