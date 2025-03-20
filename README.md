@@ -1,13 +1,13 @@
-# ffc-ahwr-event-publisher
+# ffc-ahwr-common-library
 
-NPM module for publishing events
+NPM module for providing common functionality to the AHWR applications
 
 ## Usage
 
 ### Installation
 
 ```
-npm install --save ffc-ahwr-event-publisher
+npm install --save ffc-ahwr-common-library
 
 ```
 
@@ -70,7 +70,7 @@ Message objects must follow the below structure.
 #### Example usage
 
 ```
-const { PublishEvent } = require('ffc-ahwr-event-publisher')
+const { PublishEvent } = require('ffc-ahwr-common-library')
 
 const eventPublisher = new PublishEvent(config)
 
