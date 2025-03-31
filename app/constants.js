@@ -14,3 +14,10 @@ export const CLAIM_STATUS = {
   SENT_TO_FINANCE: 15,
   PAYMENT_HELD: 16
 }
+
+export const TYPE_OF_LIVESTOCK = {
+  BEEF: "beef",
+  DAIRY: "dairy",
+  PIGS: "pigs",
+  SHEEP: "sheep"
+}
