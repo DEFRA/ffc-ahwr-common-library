@@ -21,3 +21,12 @@ export const TYPE_OF_LIVESTOCK = {
   PIGS: "pigs",
   SHEEP: "sheep"
 }
+
+export const MULTIPLE_HERD_REASONS = {
+  separateManagementNeeds: 'They have separate management needs',
+  uniqueHealthNeeds: 'They have unique health needs to other herds on the farm (if present)',
+  differentBreed: 'They are a different breed',
+  differentPurpose: 'They are used for another purpose than the other herd(s) (e.g. milking cattle)',
+  keptSeparate: 'They have been kept completely separate from any other herds',
+  other: 'Other'
+}

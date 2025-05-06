@@ -1,6 +1,6 @@
 {
   "name": "ffc-ahwr-common-library",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Event sending npm module for FFC ahwr services",
   "engines": {
     "node": ">=20"
