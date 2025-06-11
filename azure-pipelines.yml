@@ -1,0 +1,21 @@
+name: '$(Build.SourceBranchName)$(Rev:.r)'
+trigger:
+  - main
+  - feature/*
+
+pr:
+- main
+- releases/*
+
+resources:
+  repositories:
+    - repository: templates
+      endpoint: DEFRA
+      type: github
+      name: defra/fcp-pipeline-common
+      ref: feature/pl-616-ado-npm
+      
+extends:
+  template: fcp-common-pipeline.yaml@templates
+  parameters: 
+    Type: npm
