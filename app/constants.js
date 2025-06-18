@@ -26,7 +26,7 @@ export const MULTIPLE_HERD_REASONS = {
   separateManagementNeeds: 'They have separate management needs',
   uniqueHealthNeeds: 'They have unique health needs',
   differentBreed: 'They are a different breed',
-  differentPurpose: 'They are used for another purpose (e.g. breeding)',
+  differentPurpose: 'They are used for another purpose',
   keptSeparate: 'They have been kept completely separate',
   other: `Other reasons based on my vet's judgement`
 }
