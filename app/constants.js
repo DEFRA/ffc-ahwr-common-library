@@ -41,7 +41,7 @@ export const PIG_GENETIC_SEQUENCING_VALUES =  [
     label: "Wild Type (WT) PRRS 1 only"
   },
   {
-    value: "prrs1plus",
+    value: "prrs1Plus",
     label: "(WT) PRRS 1 plus MLV or recombination"
   },
   {
