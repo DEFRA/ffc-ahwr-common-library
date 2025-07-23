@@ -53,3 +53,11 @@ export const PIG_GENETIC_SEQUENCING_VALUES =  [
     label: "Any PRRS 2 (reportable by the laboratory)"
   }
 ]
+
+export const REDACT_PII_VALUES = {
+  REDACTED_NAME: 'REDACTED_NAME',
+  REDACTED_EMAIL: 'redacted.email@example.com',
+  REDACTED_ADDRESS: 'REDACTED_ADDRESS',
+  REDACTED_ORG_EMAIL: 'redacted.org.email@example.com',
+  REDACTED_FARMER_NAME: 'REDACTED_FARMER_NAME'
+}
