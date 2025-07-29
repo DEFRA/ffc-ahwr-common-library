@@ -69,3 +69,10 @@ export const REDACT_PII_VALUES = {
   REDACTED_HERD_CPH: 'REDACTED_HERD_CPH',
   REDACTED_CHANGED_BY: 'REDACTED_CHANGED_BY'
 }
+
+export const RPA_CONTACT_DETAILS = {
+  loginUri: 'https://www.ruralpayments.service.gov.uk',
+  callChargesUri: 'https://www.gov.uk/call-charges',
+  email: 'ruralpayments@defra.gov.uk',
+  telephone: '03000 200 301'
+}
