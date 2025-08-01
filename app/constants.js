@@ -89,3 +89,6 @@ export const RPA_CONTACT_DETAILS = {
   email: 'ruralpayments@defra.gov.uk',
   telephone: '03000 200 301'
 }
+
+export const APPLICATION_REFERENCE_PREFIX_OLD_WORLD = "AHWR-"
+export const APPLICATION_REFERENCE_PREFIX_NEW_WORLD = "IAHW-"
