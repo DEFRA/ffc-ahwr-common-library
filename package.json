@@ -1,6 +1,6 @@
 {
   "name": "ffc-ahwr-common-library",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Event sending npm module for FFC ahwr services",
   "engines": {
     "node": ">=20"
@@ -37,7 +37,7 @@
     "eslint-config-prettier": "10.1.1",
     "neostandard": "0.12.1",
     "jest": "^29.7.0",
-    "jest-junit": "^13.0.0"
+    "jest-junit": "^13.2.0"
   },
   "peerDependencies": {
     "applicationinsights": "^2.9.6",

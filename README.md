@@ -11,42 +11,6 @@ npm install --save ffc-ahwr-common-library
 
 ```
 
-### Configuration
-
-`name` - name of connection, if not supplied the address name will be used. This value is also used in App Insights tracing
-
-`host` - Azure Service Bus namespace, for example, `myservicebus.servicebus.windows.net`
-
-`useCredentialChain` - Boolean value for whether to authenticate connection with using Azure's credential chain. For example, set this to true if you wish to use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity). If `false`, then `username` and `password` are required.
-
-`username` - Azure Service Bus Shared Access Key name for authentication. Not required if `useCredentialChain` is `true`.
-
-`password` - Azure Service Bus Shared Access Key value for authentication. Not required if `useCredentialChain` is `true`.
-
-`type` - Azure Service Bus entity to connect to, allows `queue`, `sessionQueue`, `topic` or `subscription`.
-
-`address` - Name of the Azure Service Bus queue, topic or subscription to connect to.
-
-`topic` - Required for subscription connections only. The name of the topic the subscription belongs to.
-
-`appInsights` - Application Insights module if logging is required
-
-#### Example
-
-```
-const config = {
-  host: 'myservicebus.servicebus.windows.net',
-  useCredentialChain: false,
-  username: 'mySharedAccessKeyName',
-  password: 'mySharedAccessKey,
-  address: 'mySubscription,
-  type: 'subscription',
-  topic: 'myTopic',
-  appInsights: require('applicationinsights'),
-  retries: 5
-}
-```
-
 ### Send event
 
 Message objects must follow the below structure.
