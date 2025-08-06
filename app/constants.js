@@ -54,6 +54,15 @@ export const PIG_GENETIC_SEQUENCING_VALUES =  [
   }
 ]
 
+export const REDACT_PII_PROGRESS_STATUS = {
+  GOT_APPLICATIONS_TO_REDACT: 'applications-to-redact',
+  DOCUMENT_GENERATOR_REDACTED: 'documents',
+  SFD_MESSAGE_PROXY_REDACTED: 'messages',
+  APPLICATION_STORAGE_REDACTED: 'storage-accounts',
+  APPLICATION_DATABASE_REDACTED: 'database-tables',
+  APPLICATION_REDACT_FLAG_ADDED: 'redacted-flag'
+}
+
 export const REDACT_PII_VALUES = {
   REDACTED_NAME: 'REDACTED_NAME',
   REDACTED_EMAIL: 'redacted.email@example.com',
