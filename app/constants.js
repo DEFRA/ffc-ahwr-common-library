@@ -101,3 +101,9 @@ export const RPA_CONTACT_DETAILS = {
 
 export const APPLICATION_REFERENCE_PREFIX_OLD_WORLD = "AHWR-"
 export const APPLICATION_REFERENCE_PREFIX_NEW_WORLD = "IAHW-"
+
+export const UNNAMED_FLOCK = 'Unnamed flock'
+export const UNNAMED_HERD = 'Unnamed herd'
+
+export const AHWR_SCHEME = 'ahwr'
+export const SUPPORTED_SCHEMES = [AHWR_SCHEME]
