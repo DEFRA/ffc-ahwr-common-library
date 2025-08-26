@@ -1,6 +1,4 @@
-import { PublishEvent } from '../../../app/event-publisher/publish-event.js'
 import { validateEvent } from '../../../app/event-publisher/event-schema.js'
-import { publishEventRequest } from '../../../app/messaging/publish-event-request.js'
 import { trackEvents } from '../../../app/app-insights/track-events.js'
 import { PublishEventBatch } from '../../../app/event-publisher/publish-event-batch.js'
 import { publishEventBatchRequest } from '../../../app/messaging/publish-event-batch-request.js'
