@@ -7,7 +7,7 @@ export const publishEventBatchRequest = async (eventMessages, config) => {
     return createMessage(
       message,
       message.properties.action.type,
-      message.properties.checkpoint,
+      message.properties.checkpoint
     );
   });
   const eventSender = new MessageBatchSender(config);
