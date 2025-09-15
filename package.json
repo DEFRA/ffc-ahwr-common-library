@@ -5,6 +5,9 @@
   "engines": {
     "node": ">=20"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DEFRA/ffc-ahwr-common-library.git"
@@ -55,7 +58,7 @@
   },
   "release-it": {
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
       "release": true,
