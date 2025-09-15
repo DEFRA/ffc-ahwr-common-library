@@ -11,7 +11,7 @@
   },
   "type": "module",
   "scripts": {
-    "github:release": "npm run github:release --workspaces",
+    "github:release": "npx cdp-github-release ffc-ahwr-common-library",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prettier": "prettier . --check \"**/*.{cjs,js,json,md}\"",
@@ -52,5 +52,26 @@
     "plugins": [
       "@babel/plugin-transform-modules-commonjs"
     ]
+  },
+  "release-it": {
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true,
+      "releaseName": "Release ffc-ahwr-common-library ${version}",
+      "releaseNotes": "echo ''"
+    },
+    "git": {
+      "commitMessage": "Tagged ffc-ahwr-common-library ${version}",
+      "tagName": "ffc-ahwr-common-library-${version}",
+      "requireCleanWorkingDir": false,
+      "commitArgs": [
+        "--no-verify"
+      ]
+    }
+  },
+  "bin": {
+    "cdp-github-release": "ci/release-it.sh"
   }
 }
