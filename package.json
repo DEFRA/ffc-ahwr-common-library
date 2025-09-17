@@ -17,8 +17,8 @@
     "github:release": "npx cdp-github-release ffc-ahwr-common-library",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "prettier": "prettier . --check \"**/*.{cjs,js,json,md}\"",
-    "prettier:fix": "prettier . --write \"**/*.{cjs,js,json,md}\"",
+    "prettier": "prettier --check \"**/*.{cjs,js,json,md}\"",
+    "prettier:fix": "prettier --write \"**/*.{cjs,js,json,md}\"",
     "publish:changed": "changeset publish",
     "test": "jest",
     "version:changed": "changeset version"
