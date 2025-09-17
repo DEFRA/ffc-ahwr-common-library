@@ -59,6 +59,17 @@ await eventPublisher.sendEvent({
 
 ```
 
+## Making changes
+
+To make changes to this library, please follow the steps below:
+1. Make the changes as usual to the codebase.
+2. Run `npx @changesets/cli` to create a changeset file. This will guide you through the process of documenting your changes.`
+3. Ensure the changeset .md file is added to the commit.
+4. Push to branch, and create a pull request.
+5. Github actions will verify the build
+6. After review, merge the pull request.
+7. Github action will automatically increment the version and publish to NPM.
+
 ## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
