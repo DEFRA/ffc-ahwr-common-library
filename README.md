@@ -34,7 +34,7 @@ Message objects must follow the below structure.
 #### Example usage
 
 ```
-const { PublishEvent } = require('ffc-ahwr-common-library')
+import { PublishEvent } from 'ffc-ahwr-common-library'
 
 const eventPublisher = new PublishEvent(config)
 
