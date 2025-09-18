@@ -21,7 +21,8 @@
     "prettier:fix": "prettier --write \"**/*.{cjs,js,json}\"",
     "publish:changed": "changeset publish",
     "test": "jest",
-    "version:changed": "changeset version"
+    "version:changed": "changeset version",
+    "version:create": "changeset"
   },
   "author": "Defra AHWR Team",
   "exports": "./index.js",
