@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+branch="$(git symbolic-ref --short HEAD)"
+
+if [ "$branch" = "tester" ]; then
+  echo "❌ Pushing to main is not allowed!"
+  exit 1
+fi
