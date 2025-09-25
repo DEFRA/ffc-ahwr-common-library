@@ -112,3 +112,16 @@ export const UNNAMED_HERD = "Unnamed herd";
 
 export const AHWR_SCHEME = "ahwr";
 export const SUPPORTED_SCHEMES = [AHWR_SCHEME];
+
+export const SESSION_ENTRIES = {
+  application: "application",
+  tempReference: "tempReference",
+  endemicsClaim: "endemicsClaim",
+  farmerApplyData: "farmerApplyData",
+  pkcecodes: "pkcecodes",
+  tokens: "tokens",
+  customer: "customer",
+  cannotSignInDetails: "cannotSignInDetails",
+  signInRedirect: "signInRedirect",
+  tempClaimReference: "tempClaimReference"
+};
