@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 2.6.6
+
+### Patch Changes
+
+- 1c2f062: Moving session entry names to common library
+
 ## 2.6.4
 
 ### Patch Changes
