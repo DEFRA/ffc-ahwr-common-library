@@ -123,5 +123,5 @@ export const SESSION_ENTRIES = {
   customer: "customer",
   cannotSignInDetails: "cannotSignInDetails",
   signInRedirect: "signInRedirect",
-  tempClaimReference: "tempClaimReference"
+  tempClaimReference: "tempClaimReference",
 };
