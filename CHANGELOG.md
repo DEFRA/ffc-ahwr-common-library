@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 2.6.7
+
+### Patch Changes
+
+- d8f9ae5: Update the husky hooks so they won't restrict github actions bot from updating main branch
+
 ## 2.6.6
 
 ### Patch Changes
