@@ -1,6 +1,9 @@
 branch="$(git symbolic-ref --short HEAD)"
+currentUser="$(git config user.name)"
 
-if [ "$branch" = "main" ]; then
-  echo "❌ Please don't commit to main, make sure you are on a specific branch!"
-  exit 1
+if [ "$currentUser" != "github-actions[bot]" ]; then
+    if [ "$branch" = "main" ]; then
+      echo "❌ Please don't commit to main, make sure you are on a specific branch!"
+      exit 1
+    fi
 fi
