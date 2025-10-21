@@ -20,7 +20,7 @@ export const closedViewStatuses = ["WITHDRAWN", "REJECTED", "NOT_AGREED", "READY
 export const claimType = {
   review: "REVIEW",
   endemics: "FOLLOW_UP",
-  vetVisits: "VV" //old world claim
+  vetVisits: "VV" // old world claim
 }
 
 export const TYPE_OF_LIVESTOCK = {
