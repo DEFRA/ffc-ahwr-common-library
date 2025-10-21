@@ -15,13 +15,19 @@ export const CLAIM_STATUS = {
   PAYMENT_HELD: 16,
 };
 
-export const closedViewStatuses = ["WITHDRAWN", "REJECTED", "NOT_AGREED", "READY_TO_PAY", "PAID"];
+export const closedViewStatuses = [
+  "WITHDRAWN",
+  "REJECTED",
+  "NOT_AGREED",
+  "READY_TO_PAY",
+  "PAID",
+];
 
 export const claimType = {
   review: "REVIEW",
   endemics: "FOLLOW_UP",
-  vetVisits: "VV" // old world claim
-}
+  vetVisits: "VV", // old world claim
+};
 
 export const TYPE_OF_LIVESTOCK = {
   BEEF: "beef",
