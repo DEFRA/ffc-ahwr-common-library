@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 2.6.8
+
+### Patch Changes
+
+- bf7443d: Add new constants needed for CDP migration
+
 ## 2.6.7
 
 ### Patch Changes
