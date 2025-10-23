@@ -1,6 +1,6 @@
 import {
   basicTestResultStatus,
-  claimType,
+  claimType as CLAIM_TYPE,
   PI_HUNT_AND_DAIRY_FOLLOW_UP_RELEASE_DATE,
   TYPE_OF_LIVESTOCK,
 } from "../constants.js";
@@ -9,7 +9,7 @@ import { prices } from "./prices.js";
 const isVisitDateAfterPIHuntAndDairyGoLive = (dateOfVisit) => {
   const dateOfVisitParsed = new Date(dateOfVisit);
   if (Number.isNaN(dateOfVisitParsed.getTime())) {
-    throw new Error(
+    throw new TypeError(
       `dateOfVisit must be parsable as a date, value provided: ${dateOfVisit}`
     );
   }
@@ -68,14 +68,14 @@ const getBeefDairyAmount = (data, claimType) => {
 
 export const getAmount = (data) => {
   const { type, typeOfLivestock, reviewTestResults } = data;
-  const typeOfClaim = type === claimType.review ? "review" : "followUp";
+  const typeOfClaim = type === CLAIM_TYPE.review ? "review" : "followUp";
 
   if (
     [TYPE_OF_LIVESTOCK.BEEF, TYPE_OF_LIVESTOCK.DAIRY].includes(
       typeOfLivestock
     ) &&
     reviewTestResults &&
-    type === claimType.endemics
+    type === CLAIM_TYPE.endemics
   ) {
     return getBeefDairyAmount(data, typeOfClaim);
   }
