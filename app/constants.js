@@ -1,18 +1,18 @@
-export const CLAIM_STATUS = {
-  AGREED: 1,
-  WITHDRAWN: 2,
-  IN_CHECK: 5,
-  ACCEPTED: 6,
-  NOT_AGREED: 7,
-  PAID: 8,
-  READY_TO_PAY: 9,
-  REJECTED: 10,
-  ON_HOLD: 11,
-  RECOMMENDED_TO_PAY: 12,
-  RECOMMENDED_TO_REJECT: 13,
-  AUTHORISED: 14,
-  SENT_TO_FINANCE: 15,
-  PAYMENT_HELD: 16,
+export const STATUS = {
+  AGREED: 'AGREED',
+  WITHDRAWN: 'WITHDRAWN',
+  IN_CHECK: 'IN_CHECK',
+  ACCEPTED: 'ACCEPTED',
+  NOT_AGREED: 'NOT_AGREED',
+  PAID: 'PAID',
+  READY_TO_PAY: 'READY_TO_PAY',
+  REJECTED: 'REJECTED',
+  ON_HOLD: 'ON_HOLD',
+  RECOMMENDED_TO_PAY: 'RECOMMENDED_TO_PAY',
+  RECOMMENDED_TO_REJECT: 'RECOMMENDED_TO_REJECT',
+  AUTHORISED: 'AUTHORISED',
+  SENT_TO_FINANCE: 'SENT_TO_FINANCE',
+  PAYMENT_HELD: 'PAYMENT_HELD',
 };
 
 export const closedViewStatuses = [
@@ -35,6 +35,16 @@ export const TYPE_OF_LIVESTOCK = {
   PIGS: "pigs",
   SHEEP: "sheep",
 };
+
+export const vaccinationStatus = {
+  vaccinated: "vaccinated",
+  notVaccinated: "notVaccinated",
+}
+
+export const basicTestResultStatus = {
+  positive: "positive",
+  negative: "negative",
+}
 
 export const MULTIPLE_HERD_REASONS = {
   separateManagementNeeds: "They have separate management needs",
@@ -118,6 +128,10 @@ export const RPA_CONTACT_DETAILS = {
   telephone: "03000 200 301",
 };
 
+export const PI_HUNT_AND_DAIRY_FOLLOW_UP_RELEASE_DATE = new Date(
+  '2025-01-21T00:00:00'
+)
+
 export const APPLICATION_REFERENCE_PREFIX_OLD_WORLD = "AHWR-";
 export const APPLICATION_REFERENCE_PREFIX_NEW_WORLD = "IAHW-";
 
@@ -127,15 +141,3 @@ export const UNNAMED_HERD = "Unnamed herd";
 export const AHWR_SCHEME = "ahwr";
 export const SUPPORTED_SCHEMES = [AHWR_SCHEME];
 
-export const SESSION_ENTRIES = {
-  application: "application",
-  tempReference: "tempReference",
-  endemicsClaim: "endemicsClaim",
-  farmerApplyData: "farmerApplyData",
-  pkcecodes: "pkcecodes",
-  tokens: "tokens",
-  customer: "customer",
-  cannotSignInDetails: "cannotSignInDetails",
-  signInRedirect: "signInRedirect",
-  tempClaimReference: "tempClaimReference",
-};
