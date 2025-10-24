@@ -1,5 +1,13 @@
 # ffc-ahwr-common-library
 
+## 3.0.0
+
+### Major Changes
+
+- 0b37f0a: CDP constants and price helper.
+
+  Removed some FCP specific constants - CLAIM_STATUS and sessionKeys no longer required
+
 ## 2.6.8
 
 ### Patch Changes
