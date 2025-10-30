@@ -16,5 +16,5 @@ export const getNextReminderToSend = (type, previousReminderSent) => {
         return threeMonths;
     }
   }
-  throw Error(`The type provided is not recognised, type:${type}`);
+  throw new TypeError(`The type provided is not recognised, type:${type}`);
 };
