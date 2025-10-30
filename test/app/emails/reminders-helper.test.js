@@ -1,7 +1,21 @@
-import { getNextNotClaimedReminderToSend } from "../../../app/emails/reminders-helper.js";
+import {
+  getNextNotClaimedReminderToSend,
+  getNextReminderToSend,
+} from "../../../app/emails/reminders-helper.js";
 import { reminders } from "../../../app/emails/reminders.js";
 
 const { notClaimed } = reminders;
+
+describe("getNextReminderToSend", () => {
+  test("Error when type not recognised", () => {
+    const invalidType = "foo";
+    const previousReminderSent = undefined;
+
+    expect(() =>
+      getNextReminderToSend(invalidType, previousReminderSent)
+    ).toThrow("The type provided is not recognised, type:foo");
+  });
+});
 
 describe("getNextNotClaimedReminderToSend", () => {
   test("First NotClaimed reminder should be threeMonths", () => {

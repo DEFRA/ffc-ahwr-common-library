@@ -4,7 +4,7 @@ export const getNextNotClaimedReminderToSend = (previousReminderSent) => {
   return getNextReminderToSend(reminders.notClaimed, previousReminderSent);
 };
 
-const getNextReminderToSend = (type, previousReminderSent) => {
+export const getNextReminderToSend = (type, previousReminderSent) => {
   if (type === reminders.notClaimed) {
     const { threeMonths, sixMonths, nineMonths } = reminders.notClaimed;
     switch (previousReminderSent) {
