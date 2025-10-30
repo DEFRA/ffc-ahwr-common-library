@@ -41,4 +41,12 @@ describe("getNextNotClaimedReminderToSend", () => {
 
     expect(nextReminder).toBe(notClaimed.nineMonths);
   });
+
+  test("After nineMonths, undefined should be returned", () => {
+    const previousReminderSent = notClaimed.nineMonths;
+
+    const nextReminder = getNextNotClaimedReminderToSend(previousReminderSent);
+
+    expect(nextReminder).toBeUndefined();
+  });
 });

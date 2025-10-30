@@ -12,6 +12,8 @@ export const getNextReminderToSend = (type, previousReminderSent) => {
         return sixMonths;
       case sixMonths:
         return nineMonths;
+      case nineMonths:
+        return undefined;
       default:
         return threeMonths;
     }
