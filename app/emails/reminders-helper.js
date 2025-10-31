@@ -20,3 +20,9 @@ export const getNextReminderToSend = (type, previousReminderSent) => {
   }
   throw new TypeError(`The type provided is not recognised, type:${type}`);
 };
+
+export const isValidReminderType = (parentAndSubType) => {
+  return Object.values(reminders).some((parentType) =>
+    Object.values(parentType).includes(parentAndSubType)
+  );
+};

@@ -1,6 +1,7 @@
 import {
   getNextNotClaimedReminderToSend,
   getNextReminderToSend,
+  isValidReminderType,
 } from "../../../app/emails/reminders-helper.js";
 import { reminders } from "../../../app/emails/reminders.js";
 
@@ -48,5 +49,31 @@ describe("getNextNotClaimedReminderToSend", () => {
     const nextReminder = getNextNotClaimedReminderToSend(previousReminderSent);
 
     expect(nextReminder).toBeUndefined();
+  });
+});
+
+describe("isValidReminderType", () => {
+  test("Valid parent and sub type should return true", () => {
+    const parentAndSubType = "notClaimed_sixMonths";
+
+    const exists = isValidReminderType(parentAndSubType);
+
+    expect(exists).toBe(true);
+  });
+
+  test("Invalid parent type should return false", () => {
+    const parentAndSubType = "invalidParentType_sixMonths";
+
+    const exists = isValidReminderType(parentAndSubType);
+
+    expect(exists).toBe(false);
+  });
+
+  test("Invalid sub type should return false", () => {
+    const parentAndSubType = "notClaimed_invalidSubType";
+
+    const exists = isValidReminderType(parentAndSubType);
+
+    expect(exists).toBe(false);
   });
 });
