@@ -1,7 +1,7 @@
 import {
   getNextNotClaimedReminderToSend,
   getNextReminderToSend,
-  isValidReminderType
+  isValidReminderType,
 } from "../../../app/emails/reminders-helper.js";
 import { reminders } from "../../../app/emails/reminders.js";
 

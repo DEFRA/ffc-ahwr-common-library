@@ -22,5 +22,7 @@ export const getNextReminderToSend = (type, previousReminderSent) => {
 };
 
 export const isValidReminderType = (parentAndSubType) => {
-  return Object.values(reminders).some(parentType => Object.values(parentType).includes(parentAndSubType))
+  return Object.values(reminders).some((parentType) =>
+    Object.values(parentType).includes(parentAndSubType)
+  );
 };
