@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.1.0
+
+### Minor Changes
+
+- 89b92a1: Add SNS and SQS functionality
+
 ## 3.0.0
 
 ### Major Changes
