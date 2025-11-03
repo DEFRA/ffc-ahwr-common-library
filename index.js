@@ -5,3 +5,6 @@ export * from "./app/amounts/prices.js";
 export * from "./app/amounts/prices-helper.js";
 export * from "./app/emails/reminders.js";
 export * from "./app/emails/reminders-helper.js";
+export * from "./app/cdp-messaging/sns-client.js";
+export * from "./app/cdp-messaging/sqs-subscriber.js";
+export * from "./app/cdp-messaging/trace-parent.js";
