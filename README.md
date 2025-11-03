@@ -62,7 +62,7 @@ await eventPublisher.sendEvent({
 ## Making changes
 
 To make changes to this library, please follow the steps below:
-1. Make the changes as usual to the codebase.
+1. Make the changes as usual to the codebase. Ensure your changes are exported via the index.js file!
 2. Run `npm run version:create` OR `npx @changesets/cli` to create a changeset file. This will guide you through the process of documenting your changes.`
 3. Ensure the changeset .md file is added to the commit (should be done automatically now).
 4. Push to branch, and create a pull request.
