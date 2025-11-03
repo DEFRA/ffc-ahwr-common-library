@@ -5,6 +5,7 @@ import {
 } from "@aws-sdk/client-sqs";
 import { setTimeout } from "node:timers/promises";
 import { withTraceParent } from "./trace-parent.js";
+const DEFAULT_POLL_TIMEOUT_MS = 30000;
 
 export class SqsSubscriber {
   constructor(options) {
@@ -12,7 +13,8 @@ export class SqsSubscriber {
     this.onMessage = options.onMessage;
     this.logger = options.logger;
     this.isRunning = false;
-    this.timeoutOnPollErrorMs = options.timeoutOnErrorMs || 30000;
+    this.timeoutOnPollErrorMs =
+      options.timeoutOnErrorMs || DEFAULT_POLL_TIMEOUT_MS;
 
     this.sqsClient = new SQSClient({
       region: options.region,
