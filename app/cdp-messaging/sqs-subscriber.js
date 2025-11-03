@@ -38,7 +38,7 @@ export class SqsSubscriber {
         await Promise.all(messages.map((m) => this.processMessage(m)));
       } catch (err) {
         this.logger.error(
-          `Error polling SQS queue ${this.queueUrl}: ${err.message}`,
+          `Error polling SQS queue ${this.queueUrl}: ${err.message}`
         );
         await setTimeout(this.timeoutOnPollErrorMs);
       }
@@ -57,7 +57,7 @@ export class SqsSubscriber {
     } catch (err) {
       this.logger.error(
         { error: err },
-        `Error processing SQS message ${message.MessageId}`,
+        `Error processing SQS message ${message.MessageId}`
       );
     }
   }
@@ -70,7 +70,7 @@ export class SqsSubscriber {
         WaitTimeSeconds: 20,
         AttributeNames: ["All"],
         MessageAttributeNames: ["All"],
-      }),
+      })
     );
 
     return response.Messages || [];
@@ -81,7 +81,7 @@ export class SqsSubscriber {
       new DeleteMessageCommand({
         QueueUrl: this.queueUrl,
         ReceiptHandle: message.ReceiptHandle,
-      }),
+      })
     );
   }
 }

@@ -1,5 +1,8 @@
 import { setTimeout } from "node:timers/promises";
-import { getTraceParent, withTraceParent } from "../../../app/cdp-messaging/trace-parent.js";
+import {
+  getTraceParent,
+  withTraceParent,
+} from "../../../app/cdp-messaging/trace-parent.js";
 
 describe("traceParent", () => {
   it("runs a function with traceParent in async scope", async () => {

@@ -17,14 +17,16 @@ export const setupClient = (region, awsEndpointUrl, logger, publishToTopic) => {
 };
 
 export const publishMessage = async (data, topic = defaultTopic) => {
-  if(!clientSetup) {
-    throw new Error('SNS client not setup. Call setupClient() before publishing messages.');
+  if (!clientSetup) {
+    throw new Error(
+      "SNS client not setup. Call setupClient() before publishing messages."
+    );
   }
   loggerInstance.info(`Publish command ${topic}`);
   await snsClient.send(
     new PublishCommand({
       TopicArn: topic,
       Message: JSON.stringify(data),
-    }),
+    })
   );
 };

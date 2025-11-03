@@ -1,12 +1,15 @@
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
-import { publishMessage, setupClient } from '../../../app/cdp-messaging/sns-client.js'
+import {
+  publishMessage,
+  setupClient,
+} from "../../../app/cdp-messaging/sns-client.js";
 
 jest.mock("@aws-sdk/client-sns", () => ({
   SNSClient: jest.fn(),
   PublishCommand: jest.fn(),
 }));
 
-const mockLogger ={
+const mockLogger = {
   info: jest.fn(),
   error: jest.fn(),
 };
@@ -14,7 +17,6 @@ const mockLogger ={
 const topicArn = "arn:aws:sns:us-east-1:123456789012:MyTopic";
 
 describe("publish", () => {
-
   it("error thrown if client not set up", async () => {
     const message = {
       key: "value",
@@ -29,7 +31,8 @@ describe("publish", () => {
     PublishCommand.mockImplementation((params) => params);
 
     await expect(publishMessage(message)).rejects.toThrow(
-      "SNS client not setup. Call setupClient() before publishing messages.");
+      "SNS client not setup. Call setupClient() before publishing messages."
+    );
 
     expect(PublishCommand).toHaveBeenCalledTimes(0);
 
@@ -48,7 +51,7 @@ describe("publish", () => {
     });
 
     PublishCommand.mockImplementation((params) => params);
-    setupClient('us-east-1', 'http://localhost:4566', mockLogger, topicArn);
+    setupClient("us-east-1", "http://localhost:4566", mockLogger, topicArn);
 
     await publishMessage(message);
 

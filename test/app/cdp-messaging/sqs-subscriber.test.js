@@ -5,10 +5,10 @@ import {
 } from "@aws-sdk/client-sqs";
 import { SqsSubscriber } from "../../../app/cdp-messaging/sqs-subscriber.js";
 
-const mockLogger ={
-    info: jest.fn(),
-    error: jest.fn(),
-  };
+const mockLogger = {
+  info: jest.fn(),
+  error: jest.fn(),
+};
 
 jest.mock("@aws-sdk/client-sqs");
 
@@ -26,14 +26,14 @@ beforeEach(async () => {
     logger: mockLogger,
     region: "eu-west-2",
     awsEndpointUrl: "http://localhost:4566",
-    timeoutOnErrorMs: timeoutSleepMs
+    timeoutOnErrorMs: timeoutSleepMs,
   });
 });
 
 describe("constructor", () => {
   it("instantiates with options", () => {
     expect(consumer.queueUrl).toBe(
-      "https://sqs.eu-west-2.amazonaws.com/123456789012/test-queue",
+      "https://sqs.eu-west-2.amazonaws.com/123456789012/test-queue"
     );
     expect(consumer.onMessage).toBe(onMessage);
     expect(consumer.isRunning).toBe(false);
@@ -82,7 +82,9 @@ describe("error on polling", () => {
     await consumer.start();
 
     expect(timeCaptures[1] - timeCaptures[0]).toBeGreaterThan(timeoutSleepMs);
-    expect(mockLogger.error).toHaveBeenCalledWith("Error polling SQS queue https://sqs.eu-west-2.amazonaws.com/123456789012/test-queue: Test polling error")
+    expect(mockLogger.error).toHaveBeenCalledWith(
+      "Error polling SQS queue https://sqs.eu-west-2.amazonaws.com/123456789012/test-queue: Test polling error"
+    );
   });
 });
 
@@ -106,7 +108,7 @@ describe("message processing", () => {
       return {};
     });
 
-    consumer.onMessage.mockReset()
+    consumer.onMessage.mockReset();
 
     consumer.onMessage.mockImplementationOnce(() => {
       consumer.isRunning = false; // just take 1 message
@@ -123,7 +125,7 @@ describe("message processing", () => {
       MessageAttributeNames: ["All"],
     });
 
-    expect(onMessage).toHaveBeenCalledWith({message: "Test message 1"});
+    expect(onMessage).toHaveBeenCalledWith({ message: "Test message 1" });
 
     expect(DeleteMessageCommand).toHaveBeenCalledWith({
       QueueUrl: consumer.queueUrl,
@@ -148,17 +150,19 @@ describe("message processing", () => {
       return {};
     });
 
-    consumer.onMessage.mockReset()
+    consumer.onMessage.mockReset();
 
     consumer.onMessage.mockImplementationOnce(() => {
       consumer.isRunning = false; // just take 1 message
-     return Promise.reject(new Error("Test error"));
+      return Promise.reject(new Error("Test error"));
     });
 
     await consumer.start();
 
-    expect(mockLogger.error).toHaveBeenCalledWith({ error: new Error("Test error") },
-      "Error processing SQS message msg-1");
+    expect(mockLogger.error).toHaveBeenCalledWith(
+      { error: new Error("Test error") },
+      "Error processing SQS message msg-1"
+    );
   });
 });
 
