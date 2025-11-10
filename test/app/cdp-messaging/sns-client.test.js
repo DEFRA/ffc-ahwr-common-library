@@ -58,11 +58,56 @@ describe("publish", () => {
     expect(PublishCommand).toHaveBeenCalledWith({
       TopicArn: topicArn,
       Message: '{"key":"value"}',
+      MessageAttributes: {},
     });
 
     expect(send).toHaveBeenCalledWith({
       TopicArn: topicArn,
       Message: '{"key":"value"}',
+      MessageAttributes: {},
+    });
+  });
+
+  it("publishes a message including custom message attribute", async () => {
+    const message = {
+      key: "value",
+    };
+
+    const send = jest.fn();
+
+    SNSClient.mockReturnValue({
+      send,
+    });
+
+    PublishCommand.mockImplementation((params) => params);
+    setupClient("us-east-1", "http://localhost:4566", mockLogger, topicArn);
+
+    await publishMessage(
+      message,
+      { customAttribute: "customValue" },
+      "specialTopicArn"
+    );
+
+    expect(PublishCommand).toHaveBeenCalledWith({
+      TopicArn: "specialTopicArn",
+      Message: '{"key":"value"}',
+      MessageAttributes: {
+        customAttribute: {
+          DataType: "String",
+          StringValue: "customValue",
+        },
+      },
+    });
+
+    expect(send).toHaveBeenCalledWith({
+      TopicArn: "specialTopicArn",
+      Message: '{"key":"value"}',
+      MessageAttributes: {
+        customAttribute: {
+          DataType: "String",
+          StringValue: "customValue",
+        },
+      },
     });
   });
 });

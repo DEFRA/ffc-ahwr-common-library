@@ -97,6 +97,20 @@ describe("message processing", () => {
         MessageId: "msg-1",
         Body: '{ "message" : "Test message 1" }',
         ReceiptHandle: "receipt-1",
+        MessageAttributes: {
+          Attribute1: {
+            StringValue: "Value1",
+            DataType: "String",
+          },
+          Attribute2: {
+            StringValue: "1",
+            DataType: "Number",
+          },
+          Attribute3: {
+            BinaryValue: new TextEncoder().encode("Value3"),
+            DataType: "Binary",
+          },
+        },
       },
     ];
 
@@ -127,7 +141,14 @@ describe("message processing", () => {
       MessageAttributeNames: ["All"],
     });
 
-    expect(onMessage).toHaveBeenCalledWith({ message: "Test message 1" });
+    expect(onMessage).toHaveBeenCalledWith(
+      { message: "Test message 1" },
+      {
+        Attribute1: "Value1",
+        Attribute2: "1",
+        Attribute3: new TextEncoder().encode("Value3"),
+      }
+    );
 
     expect(DeleteMessageCommand).toHaveBeenCalledWith({
       QueueUrl: consumer.queueUrl,
@@ -162,7 +183,12 @@ describe("message processing", () => {
     await consumer.start();
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      { error: new Error("Test error") },
+      {
+        error: {
+          message: "Test error",
+          stack: expect.any(String),
+        },
+      },
       "Error processing SQS message msg-1"
     );
   });

@@ -54,11 +54,18 @@ export class SqsSubscriber {
 
     try {
       const body = JSON.parse(message.Body);
-      await withTraceParent(body.traceparent, () => this.onMessage(body));
+      await withTraceParent(body.traceparent, () =>
+        this.onMessage(body, this.extractMessageAttributes(message))
+      );
       await this.deleteMessage(message);
     } catch (err) {
       this.logger.error(
-        { error: err },
+        {
+          error: {
+            message: err.message,
+            stack: err.stack,
+          },
+        },
         `Error processing SQS message ${message.MessageId}`
       );
     }
@@ -85,5 +92,18 @@ export class SqsSubscriber {
         ReceiptHandle: message.ReceiptHandle,
       })
     );
+  }
+
+  extractMessageAttributes(message) {
+    const attributes = {};
+    for (const key in message.MessageAttributes) {
+      const attr = message.MessageAttributes[key];
+      if (attr.DataType === "String" || attr.DataType === "Number") {
+        attributes[key] = attr.StringValue;
+      } else {
+        attributes[key] = attr.BinaryValue;
+      }
+    }
+    return attributes;
   }
 }
