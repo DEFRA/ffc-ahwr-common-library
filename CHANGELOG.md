@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.2.0
+
+### Minor Changes
+
+- 4b56b87: Add support for message attributes via SNS/SQS
+
 ## 3.1.1
 
 ### Patch Changes
