@@ -97,6 +97,12 @@ describe("message processing", () => {
         MessageId: "msg-1",
         Body: '{ "message" : "Test message 1" }',
         ReceiptHandle: "receipt-1",
+        MessageAttributes: {
+          Attribute1: {
+            StringValue: "Value1",
+            DataType: "String",
+          },
+        },
       },
     ];
 
@@ -127,7 +133,12 @@ describe("message processing", () => {
       MessageAttributeNames: ["All"],
     });
 
-    expect(onMessage).toHaveBeenCalledWith({ message: "Test message 1" });
+    expect(onMessage).toHaveBeenCalledWith(
+      { message: "Test message 1" },
+      {
+        Attribute1: "Value1",
+      }
+    );
 
     expect(DeleteMessageCommand).toHaveBeenCalledWith({
       QueueUrl: consumer.queueUrl,
