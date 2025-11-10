@@ -59,9 +59,13 @@ export class SqsSubscriber {
       );
       await this.deleteMessage(message);
     } catch (err) {
-      console.log(err);
       this.logger.error(
-        { error: err },
+        {
+          error: {
+            message: err.message,
+            stack: err.stack,
+          },
+        },
         `Error processing SQS message ${message.MessageId}`
       );
     }

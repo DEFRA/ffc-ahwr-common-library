@@ -102,6 +102,14 @@ describe("message processing", () => {
             StringValue: "Value1",
             DataType: "String",
           },
+          Attribute2: {
+            StringValue: "1",
+            DataType: "Number",
+          },
+          Attribute3: {
+            BinaryValue: new TextEncoder().encode("Value3"),
+            DataType: "Binary",
+          },
         },
       },
     ];
@@ -137,6 +145,8 @@ describe("message processing", () => {
       { message: "Test message 1" },
       {
         Attribute1: "Value1",
+        Attribute2: "1",
+        Attribute3: new TextEncoder().encode("Value3"),
       }
     );
 
@@ -173,7 +183,12 @@ describe("message processing", () => {
     await consumer.start();
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      { error: new Error("Test error") },
+      {
+        error: {
+          message: "Test error",
+          stack: expect.any(String),
+        },
+      },
       "Error processing SQS message msg-1"
     );
   });
