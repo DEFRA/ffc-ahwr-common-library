@@ -1,45 +1,51 @@
-import { ServiceBusClient } from '@azure/service-bus'
-import WebSocket from 'ws'
-import { HttpsProxyAgent } from 'https-proxy-agent'
+import { ServiceBusClient } from "@azure/service-bus";
+import WebSocket from "ws";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
-export const createServiceBusClient = ({ host, username, password, proxyUrl }) => {
-    const senderByAddress = {}
+export const createServiceBusClient = ({
+  host,
+  username,
+  password,
+  proxyUrl,
+}) => {
+  const senderByAddress = {};
 
-    const client = new ServiceBusClient(
-        `Endpoint=sb://${host}/;SharedAccessKeyName=${username};SharedAccessKey=${password}`,
-        {
-            webSocketOptions: {
-                webSocket: WebSocket,
-                webSocketConstructorOptions: { agent: new HttpsProxyAgent(proxyUrl) }
-            }
-        }
-    )
+  const client = new ServiceBusClient(
+    `Endpoint=sb://${host}/;SharedAccessKeyName=${username};SharedAccessKey=${password}`,
+    {
+      webSocketOptions: {
+        webSocket: WebSocket,
+        webSocketConstructorOptions: { agent: new HttpsProxyAgent(proxyUrl) },
+      },
+    }
+  );
 
-    const sendMessage = async (message, address) => {
-        if (!senderByAddress[address]) {
-            senderByAddress[address] = client.createSender(address)
-        }
-        const sender = senderByAddress[address]
-        await sender.sendMessages(message)
+  const sendMessage = async (message, address) => {
+    if (!senderByAddress[address]) {
+      senderByAddress[address] = client.createSender(address);
+    }
+    const sender = senderByAddress[address];
+    await sender.sendMessages(message);
+  };
+
+  const sendMessages = async (messages, address) =>
+    sendMessage(messages, address);
+
+  const close = async () => {
+    const addresses = Object.keys(senderByAddress);
+
+    for (const address of addresses) {
+      const sender = senderByAddress[address];
+      await sender.close();
+      delete senderByAddress[address];
     }
 
-    const sendMessages = async (messages, address) => sendMessage(messages, address)
+    await client.close();
+  };
 
-    const close = async () => {
-        const addresses = Object.keys(senderByAddress)
-
-        for (const address of addresses) {
-            const sender = senderByAddress[address]
-            await sender.close()
-            delete senderByAddress[address]
-        }
-
-        await client.close()
-    }
-
-    return {
-        sendMessage,
-        sendMessages,
-        close
-    }
-}
+  return {
+    sendMessage,
+    sendMessages,
+    close,
+  };
+};
