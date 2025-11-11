@@ -3,6 +3,8 @@ import WebSocket from 'ws'
 import { HttpsProxyAgent } from 'https-proxy-agent'
 
 export const createServiceBusClient = (options) => {
+    const senderByAddress = {}
+
     const client = new ServiceBusClient(
         `Endpoint=sb://${options.host}/;SharedAccessKeyName=${options.username};SharedAccessKey=${options.password}`,
         {
@@ -14,10 +16,13 @@ export const createServiceBusClient = (options) => {
     )
 
     const sendMessage = async (message, address) => {
-        let sender
+        if (!senderByAddress[address]) {
+            senderByAddress[address] = client.createSender(address)
+        }
+
+        let sender = senderByAddress[address]
 
         try {
-            sender = client.createSender(address)
             await sender.sendMessages(message)
         } finally {
             await sender.close()
@@ -25,8 +30,16 @@ export const createServiceBusClient = (options) => {
     }
 
     const sendMessages = async (messages, address) => sendMessage(messages, address)
-    
+
     const close = async () => {
+        const addresses = Object.keys(senderByAddress)
+
+        for (const address of addresses) {
+            const sender = senderByAddress[address]
+            await sender.close()
+            delete senderByAddress[address]
+        }
+
         await client.close()
     }
 
