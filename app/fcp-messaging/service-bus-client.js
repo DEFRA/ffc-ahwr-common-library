@@ -19,14 +19,8 @@ export const createServiceBusClient = (options) => {
         if (!senderByAddress[address]) {
             senderByAddress[address] = client.createSender(address)
         }
-
-        let sender = senderByAddress[address]
-
-        try {
-            await sender.sendMessages(message)
-        } finally {
-            await sender.close()
-        }
+        const sender = senderByAddress[address]
+        await sender.sendMessages(message)
     }
 
     const sendMessages = async (messages, address) => sendMessage(messages, address)
