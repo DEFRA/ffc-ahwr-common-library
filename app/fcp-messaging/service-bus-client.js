@@ -2,15 +2,15 @@ import { ServiceBusClient } from '@azure/service-bus'
 import WebSocket from 'ws'
 import { HttpsProxyAgent } from 'https-proxy-agent'
 
-export const createServiceBusClient = (options) => {
+export const createServiceBusClient = ({ host, username, password, proxyUrl }) => {
     const senderByAddress = {}
 
     const client = new ServiceBusClient(
-        `Endpoint=sb://${options.host}/;SharedAccessKeyName=${options.username};SharedAccessKey=${options.password}`,
+        `Endpoint=sb://${host}/;SharedAccessKeyName=${username};SharedAccessKey=${password}`,
         {
             webSocketOptions: {
                 webSocket: WebSocket,
-                webSocketConstructorOptions: { agent: new HttpsProxyAgent(options.proxyUrl) }
+                webSocketConstructorOptions: { agent: new HttpsProxyAgent(proxyUrl) }
             }
         }
     )
