@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.3.0
+
+### Minor Changes
+
+- 50301dd: fcp messaging client
+
 ## 3.2.0
 
 ### Minor Changes
