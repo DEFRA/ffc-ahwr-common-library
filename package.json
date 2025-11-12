@@ -35,8 +35,9 @@
   "dependencies": {
     "@aws-sdk/client-sns": "3.901.0",
     "@aws-sdk/client-sqs": "3.913.0",
-    "ffc-messaging": "2.10.2",
-    "joi": "^17.13.3"
+    "@azure/service-bus": "7.9.5",
+    "joi": "^17.13.3",
+    "ws": "8.18.3"
   },
   "devDependencies": {
     "@babel/core": "7.26.10",
@@ -53,8 +54,7 @@
     "neostandard": "0.12.1"
   },
   "peerDependencies": {
-    "applicationinsights": "2.9.7",
-    "ffc-messaging": "2.10.2"
+    "applicationinsights": "2.9.7"
   },
   "babel": {
     "plugins": [
