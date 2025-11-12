@@ -20,11 +20,11 @@ const eventSchema = joi.object({
   }),
 });
 
-export const validateEvent = (event) => {
+export const validateEvent = (event, logger) => {
   const { error } = eventSchema.validate(event);
 
   if (error) {
-    console.log("Event validation error", error);
+    logger.error(error, "Event validation error");
     return false;
   }
 

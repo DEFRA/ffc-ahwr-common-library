@@ -1,6 +1,8 @@
-import { validateEvent } from "../../../app/event-publisher/event-schema.js";
+import { validateEvent } from "../../../app/fcp-messaging/event-schema.js";
 
 describe("Event Schema Validation", () => {
+  const mockLogger = { error: jest.fn() };
+
   test("should return true for a valid event schema", () => {
     const validEvent = {
       name: "testEvent",
@@ -22,7 +24,8 @@ describe("Event Schema Validation", () => {
       },
     };
 
-    expect(validateEvent(validEvent)).toBe(true);
+    expect(validateEvent(validEvent, mockLogger)).toBe(true);
+    expect(mockLogger.error).not.toHaveBeenCalled();
   });
 
   test("should return true for an valid event schema without optional elements", () => {
@@ -47,6 +50,7 @@ describe("Event Schema Validation", () => {
     };
 
     expect(validateEvent(invalidEvent)).toBe(true);
+    expect(mockLogger.error).not.toHaveBeenCalled();
   });
 
   test("should return false for an invalid event schema", () => {
@@ -68,6 +72,10 @@ describe("Event Schema Validation", () => {
       },
     };
 
-    expect(validateEvent(invalidEvent)).toBe(false);
+    expect(validateEvent(invalidEvent, mockLogger)).toBe(false);
+    const [errorArg, messageArg] = mockLogger.error.mock.calls[0];
+    expect(errorArg).toBeInstanceOf(Error);
+    expect(errorArg.message).toMatch(/"properties\.id" is required/);
+    expect(messageArg).toBe("Event validation error");
   });
 });
