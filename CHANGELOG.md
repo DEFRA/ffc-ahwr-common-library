@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.3.2
+
+### Patch Changes
+
+- 0ea96a2: fix fcp-messaging import suffix
+
 ## 3.3.1
 
 ### Patch Changes
