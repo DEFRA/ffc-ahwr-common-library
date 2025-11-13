@@ -1,4 +1,4 @@
-import { createMessage } from "./create-message";
+import { createMessage } from "./create-message.js";
 
 export const createEventMessage = ({
   name,
