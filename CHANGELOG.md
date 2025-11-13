@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.3.1
+
+### Patch Changes
+
+- 623d046: fix exports for fcp-messaging
+
 ## 3.3.0
 
 ### Minor Changes
