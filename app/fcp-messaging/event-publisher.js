@@ -2,9 +2,10 @@ import { createEventMessage } from "./create-event-message.js";
 import { validateEvent } from "./event-schema.js";
 
 export const createEventPublisher = (client, address, logger) => {
+  
   const publishEvent = (event) => {
     const eventMessage = createEventMessage(event);
-    if (validateEvent(event, logger)) {
+    if (validateEvent(eventMessage, logger)) {
       client.sendMessage(eventMessage, address);
     }
   };
