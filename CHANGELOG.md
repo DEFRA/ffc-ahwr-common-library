@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.3.4
+
+### Patch Changes
+
+- d186847: ignore proxy local
+
 ## 3.3.3
 
 ### Patch Changes
