@@ -50,6 +50,22 @@ describe("createServiceBusClient", () => {
     );
   });
 
+  it("should create a ServiceBusClient without proxy when proxyUrl is missing", () => {
+    createServiceBusClient({
+      host: "test-host.servicebus.windows.net",
+      username: "user",
+      password: "pass",
+      proxyUrl: undefined,
+    });
+
+    expect(ServiceBusClient).toHaveBeenCalledWith(
+      "Endpoint=sb://test-host.servicebus.windows.net/;SharedAccessKeyName=user;SharedAccessKey=pass",
+      {
+        webSocketOptions: undefined,
+      }
+    );
+  });
+
   it("should send a message using a created sender", async () => {
     const client = createServiceBusClient({
       host: "host",

@@ -10,14 +10,18 @@ export const createServiceBusClient = ({
 }) => {
   const senderByAddress = {};
 
+  const webSocketOptions = proxyUrl
+    ? {
+        webSocket: WebSocket,
+        webSocketConstructorOptions: {
+          agent: new HttpsProxyAgent(proxyUrl),
+        },
+      }
+    : undefined;
+
   const client = new ServiceBusClient(
     `Endpoint=sb://${host}/;SharedAccessKeyName=${username};SharedAccessKey=${password}`,
-    {
-      webSocketOptions: {
-        webSocket: WebSocket,
-        webSocketConstructorOptions: { agent: new HttpsProxyAgent(proxyUrl) },
-      },
-    }
+    { webSocketOptions }
   );
 
   const sendMessage = async (message, address) => {
