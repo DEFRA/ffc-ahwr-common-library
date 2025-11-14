@@ -28,13 +28,13 @@ describe("createEventPublisher", () => {
     it("should validate the event and send a message if valid", () => {
       const mockEvent = { type: "claim-updated" };
       const mockMessage = { body: "event message" };
-      validateEvent.mockReturnValue(true);
       createEventMessage.mockReturnValue(mockMessage);
+      validateEvent.mockReturnValue(true);
 
       publisher.publishEvent(mockEvent);
 
-      expect(validateEvent).toHaveBeenCalledWith(mockEvent, mockLogger);
       expect(createEventMessage).toHaveBeenCalledWith(mockEvent);
+      expect(validateEvent).toHaveBeenCalledWith(mockMessage, mockLogger);
       expect(mockClient.sendMessage).toHaveBeenCalledWith(
         mockMessage,
         mockAddress
@@ -43,12 +43,14 @@ describe("createEventPublisher", () => {
 
     it("should not send a message if validation fails", () => {
       const mockEvent = { type: "INVALID_EVENT" };
+      const mockMessage = { body: "event message" };
+      createEventMessage.mockReturnValue(mockMessage);
       validateEvent.mockReturnValue(false);
 
       publisher.publishEvent(mockEvent);
 
-      expect(validateEvent).toHaveBeenCalledWith(mockEvent, mockLogger);
-      expect(createEventMessage).not.toHaveBeenCalled();
+      expect(createEventMessage).toHaveBeenCalledWith(mockEvent);
+      expect(validateEvent).toHaveBeenCalledWith(mockMessage, mockLogger);
       expect(mockClient.sendMessage).not.toHaveBeenCalled();
     });
   });
@@ -78,7 +80,8 @@ describe("createEventPublisher", () => {
       publisher.publishEvents(mockEvents);
 
       expect(validateEvent).toHaveBeenCalledTimes(2);
-      expect(createEventMessage).not.toHaveBeenCalled();
+      expect(validateEvent).toHaveBeenCalledTimes(mockEvents.length);
+      expect(createEventMessage).toHaveBeenCalledTimes(mockEvents.length);
       expect(mockClient.sendMessages).not.toHaveBeenCalled();
     });
   });
