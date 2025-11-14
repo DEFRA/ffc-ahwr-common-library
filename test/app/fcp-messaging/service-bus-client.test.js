@@ -50,7 +50,6 @@ describe("createServiceBusClient", () => {
     );
   });
 
-
   it("should create a ServiceBusClient without proxy when proxyUrl is missing", () => {
     createServiceBusClient({
       host: "test-host.servicebus.windows.net",
@@ -62,7 +61,7 @@ describe("createServiceBusClient", () => {
     expect(ServiceBusClient).toHaveBeenCalledWith(
       "Endpoint=sb://test-host.servicebus.windows.net/;SharedAccessKeyName=user;SharedAccessKey=pass",
       {
-        webSocketOptions: undefined
+        webSocketOptions: undefined,
       }
     );
   });
