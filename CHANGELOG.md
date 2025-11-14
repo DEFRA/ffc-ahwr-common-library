@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.3.3
+
+### Patch Changes
+
+- ce8aa5f: validate event after creating message
+
 ## 3.3.2
 
 ### Patch Changes
