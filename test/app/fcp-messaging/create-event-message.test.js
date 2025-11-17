@@ -17,7 +17,6 @@ describe("createEventMessage", () => {
       message: "Application has been updated",
       data: {
         reference: "IAHW-G3CL-V59P",
-        status: "IN_CHECK",
       },
       raisedBy: "admin",
       raisedOn: "2025-11-12T10:00:00.000Z",
@@ -38,8 +37,7 @@ describe("createEventMessage", () => {
             type: "application:status-updated:success",
             message: "Application has been updated",
             data: {
-              reference: "IAHW-G3CL-V59P",
-              statusId: "5",
+              reference: "IAHW-G3CL-V59P"
             },
             raisedBy: "admin",
             raisedOn: "2025-11-12T10:00:00.000Z",
