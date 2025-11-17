@@ -46,7 +46,7 @@ export const createEventMessage = ({
   const { status: dataStatus, ...restData } = data;
   const normalisedData = {
     ...restData,
-    statusId: dataStatus && replaceStatusId(dataStatus),
+    ...(dataStatus && { statusId: replaceStatusId(dataStatus) }),
   };
   const event = {
     name,
