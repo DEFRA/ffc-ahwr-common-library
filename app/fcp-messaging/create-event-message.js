@@ -16,16 +16,16 @@ const STATUS_ID_BY_STATUS = {
   [STATUS.AUTHORISED]: 14,
   [STATUS.SENT_TO_FINANCE]: 15,
   [STATUS.PAYMENT_HELD]: 16,
-}
+};
 
 const replaceStatusId = (type) => {
-  const status = type.split(':').pop();
+  const status = type.split(":").pop();
   const statusId = STATUS_ID_BY_STATUS[status];
 
   if (!statusId) return type;
 
   return type.replace(status, statusId);
-}
+};
 
 export const createEventMessage = ({
   name,
@@ -40,7 +40,7 @@ export const createEventMessage = ({
   raisedBy,
   raisedOn = new Date().toISOString(),
 }) => {
-  const normalisedType = replaceStatusId(type)
+  const normalisedType = replaceStatusId(type);
   const event = {
     name,
     properties: {
