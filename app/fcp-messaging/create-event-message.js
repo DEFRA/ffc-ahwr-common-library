@@ -43,6 +43,11 @@ export const createEventMessage = ({
   raisedOn = new Date().toISOString(),
 }) => {
   const normalisedType = replaceStatusId(type);
+  const { status: dataStatus, ...restData } = data;
+  const normalisedData = {
+    ...restData,
+    statusId: dataStatus && replaceStatusId(dataStatus),
+  };
   const event = {
     name,
     properties: {
@@ -54,7 +59,7 @@ export const createEventMessage = ({
       action: {
         type: normalisedType,
         message,
-        data,
+        data: normalisedData,
         raisedBy,
         raisedOn,
       },
