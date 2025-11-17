@@ -22,7 +22,9 @@ const replaceStatusId = (type) => {
   const status = type.split(":").pop();
   const statusId = STATUS_ID_BY_STATUS[status];
 
-  if (!statusId) return type;
+  if (!statusId) {
+    return type;
+  }
 
   return type.replace(status, statusId);
 };
