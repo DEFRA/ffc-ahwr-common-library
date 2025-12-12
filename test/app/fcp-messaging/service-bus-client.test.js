@@ -8,17 +8,22 @@ jest.mock("ws");
 jest.mock("https-proxy-agent");
 
 describe("createServiceBusClient", () => {
-  let mockSender, mockClient;
+  let mockSender, mockClient, mockReceiver;
 
   beforeEach(() => {
     mockSender = {
       sendMessages: jest.fn().mockResolvedValue(),
       close: jest.fn().mockResolvedValue(),
     };
-
+    mockReceiver = {
+      subscribe: jest.fn().mockReturnValue("mock-subscription"),
+      receiveMessages: jest.fn(),
+    };
     mockClient = {
       createSender: jest.fn().mockReturnValue(mockSender),
+      createReceiver: jest.fn().mockReturnValue(mockReceiver),
       close: jest.fn().mockResolvedValue(),
+      acceptSession: jest.fn().mockReturnValue(mockReceiver),
     };
 
     ServiceBusClient.mockImplementation(() => mockClient);
@@ -66,49 +71,156 @@ describe("createServiceBusClient", () => {
     );
   });
 
-  it("should send a message using a created sender", async () => {
-    const client = createServiceBusClient({
-      host: "host",
-      username: "user",
-      password: "pass",
-      proxyUrl: "http://proxy.example.com",
+  describe("sendMessage", () => {
+    it("should send a message using a created sender", async () => {
+      const client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
+
+      await client.sendMessage({ body: { field1: "value1" } }, "queue1");
+
+      expect(mockClient.createSender).toHaveBeenCalledWith("queue1");
+      expect(mockSender.sendMessages).toHaveBeenCalledWith({
+        body: { field1: "value1" },
+      });
     });
 
-    await client.sendMessage({ body: { field1: "value1" } }, "queue1");
+    it("should reuse an existing sender for the same address", async () => {
+      const client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
 
-    expect(mockClient.createSender).toHaveBeenCalledWith("queue1");
-    expect(mockSender.sendMessages).toHaveBeenCalledWith({
-      body: { field1: "value1" },
+      await client.sendMessage({ body: "msg1" }, "queue1");
+      await client.sendMessage({ body: "msg2" }, "queue1");
+
+      expect(mockClient.createSender).toHaveBeenCalledTimes(1);
+      expect(mockSender.sendMessages).toHaveBeenCalledTimes(2);
+    });
+
+    it("should close all senders and the client", async () => {
+      const client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
+
+      await client.sendMessage({ body: "close-test" }, "queue1");
+      await client.close();
+
+      expect(mockSender.close).toHaveBeenCalled();
+      expect(mockClient.close).toHaveBeenCalled();
     });
   });
 
-  it("should reuse an existing sender for the same address", async () => {
-    const client = createServiceBusClient({
-      host: "host",
-      username: "user",
-      password: "pass",
-      proxyUrl: "http://proxy.example.com",
+  describe("subscribeTopic", () => {
+    let client;
+
+    beforeEach(() => {
+      client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
     });
 
-    await client.sendMessage({ body: "msg1" }, "queue1");
-    await client.sendMessage({ body: "msg2" }, "queue1");
+    test("creates a new receiver when key does not exist", async () => {
+      const processMessage = jest.fn();
+      const processError = jest.fn();
 
-    expect(mockClient.createSender).toHaveBeenCalledTimes(1);
-    expect(mockSender.sendMessages).toHaveBeenCalledTimes(2);
+      const result = await client.subscribeTopic({
+        topicName: "topicA",
+        subscriptionName: "sub1",
+        processMessage,
+        processError,
+      });
+
+      expect(mockClient.createReceiver).toHaveBeenCalledWith(
+        "topicA",
+        "sub1",
+        {}
+      );
+
+      expect(mockReceiver.subscribe).toHaveBeenCalledWith(
+        {
+          processMessage: expect.any(Function),
+          processError,
+        },
+        {
+          autoCompleteMessages: false,
+          maxConcurrentCalls: 1,
+        }
+      );
+
+      expect(result).toBe("mock-subscription");
+    });
+
+    test("reuses existing receiver and subscription on second call", async () => {
+      const processMessage = jest.fn();
+      const processError = jest.fn();
+
+      const firstSubscription = await client.subscribeTopic({
+        topicName: "topicA",
+        subscriptionName: "sub1",
+        processMessage,
+        processError,
+      });
+
+      const secondSubscription = await client.subscribeTopic({
+        topicName: "topicA",
+        subscriptionName: "sub1",
+        processMessage,
+        processError,
+      });
+
+      expect(secondSubscription).toBe(firstSubscription);
+      expect(mockClient.createReceiver).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it("should close all senders and the client", async () => {
-    const client = createServiceBusClient({
-      host: "host",
-      username: "user",
-      password: "pass",
-      proxyUrl: "http://proxy.example.com",
+  describe("receiveSessionMessages", () => {
+    let client;
+
+    beforeEach(() => {
+      client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
     });
 
-    await client.sendMessage({ body: "close-test" }, "queue1");
-    await client.close();
+    it("should accept a session and receive messages", async () => {
+      const queueName = "test-queue";
+      const sessionId = "abc123";
+      const count = 2;
+      mockReceiver.receiveMessages.mockResolvedValue(["msg1", "msg2"]);
 
-    expect(mockSender.close).toHaveBeenCalled();
-    expect(mockClient.close).toHaveBeenCalled();
+      const result = await client.receiveSessionMessages(
+        queueName,
+        sessionId,
+        count,
+        { sessionOpt: true },
+        { customOpt: true }
+      );
+
+      expect(mockClient.acceptSession).toHaveBeenCalledWith(
+        queueName,
+        sessionId,
+        { sessionOpt: true }
+      );
+      expect(mockReceiver.receiveMessages).toHaveBeenCalledWith(2, {
+        maxWaitTimeInMs: 30000,
+        customOpt: true,
+      });
+      expect(result).toEqual(["msg1", "msg2"]);
+    });
   });
 });
