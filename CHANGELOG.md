@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.4.0
+
+### Minor Changes
+
+- 9768b77: added subscribe topic and receive messages on service bus client
+
 ## 3.3.5
 
 ### Patch Changes
