@@ -8,16 +8,18 @@ jest.mock("ws");
 jest.mock("https-proxy-agent");
 
 describe("createServiceBusClient", () => {
-  let mockSender, mockClient, mockReceiver;
+  let mockSender, mockClient, mockReceiver, mockSubscription;
 
   beforeEach(() => {
     mockSender = {
       sendMessages: jest.fn().mockResolvedValue(),
       close: jest.fn().mockResolvedValue(),
     };
+    mockSubscription = { close: jest.fn() };
     mockReceiver = {
-      subscribe: jest.fn().mockReturnValue("mock-subscription"),
+      subscribe: jest.fn().mockReturnValue(mockSubscription),
       receiveMessages: jest.fn(),
+      close: jest.fn(),
     };
     mockClient = {
       createSender: jest.fn().mockReturnValue(mockSender),
@@ -102,8 +104,10 @@ describe("createServiceBusClient", () => {
       expect(mockClient.createSender).toHaveBeenCalledTimes(1);
       expect(mockSender.sendMessages).toHaveBeenCalledTimes(2);
     });
+  });
 
-    it("should close all senders and the client", async () => {
+  describe("close", () => {
+    it("should close all senders, receivers and the client", async () => {
       const client = createServiceBusClient({
         host: "host",
         username: "user",
@@ -112,9 +116,16 @@ describe("createServiceBusClient", () => {
       });
 
       await client.sendMessage({ body: "close-test" }, "queue1");
+      await client.subscribeTopic({
+        topicName: "topicA",
+        subscriptionName: "sub1",
+        processMessage: () => {},
+        processError: () => {},
+      });
       await client.close();
 
       expect(mockSender.close).toHaveBeenCalled();
+      expect(mockReceiver.close).toHaveBeenCalled();
       expect(mockClient.close).toHaveBeenCalled();
     });
   });
@@ -159,7 +170,7 @@ describe("createServiceBusClient", () => {
         }
       );
 
-      expect(result).toBe("mock-subscription");
+      expect(result).toBe(mockSubscription);
     });
 
     test("reuses existing receiver and subscription on second call", async () => {
@@ -207,18 +218,17 @@ describe("createServiceBusClient", () => {
         queueName,
         sessionId,
         count,
-        { sessionOpt: true },
-        { customOpt: true }
+        { receiveMode: "peekLock" },
+        { maxWaitTimeInMs: 60000 }
       );
 
       expect(mockClient.acceptSession).toHaveBeenCalledWith(
         queueName,
         sessionId,
-        { sessionOpt: true }
+        { receiveMode: "peekLock" }
       );
       expect(mockReceiver.receiveMessages).toHaveBeenCalledWith(2, {
-        maxWaitTimeInMs: 30000,
-        customOpt: true,
+        maxWaitTimeInMs: 60000,
       });
       expect(result).toEqual(["msg1", "msg2"]);
     });

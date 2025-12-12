@@ -9,7 +9,7 @@ export const createServiceBusClient = ({
   proxyUrl,
 }) => {
   const senderByAddress = {};
-  const receivers = {};
+  const receiverSubscriptions = {};
 
   const webSocketOptions = proxyUrl
     ? {
@@ -46,7 +46,7 @@ export const createServiceBusClient = ({
   }) => {
     const key = `${topicName}:${subscriptionName}`;
 
-    if (!receivers[key]) {
+    if (!receiverSubscriptions[key]) {
       const receiver = client.createReceiver(
         topicName,
         subscriptionName,
@@ -64,10 +64,10 @@ export const createServiceBusClient = ({
           ...subscribeOptions,
         }
       );
-      receivers[key] = { receiver, subscription };
+      receiverSubscriptions[key] = { receiver, subscription };
     }
 
-    return receivers[key].subscription;
+    return receiverSubscriptions[key].subscription;
   };
 
   const receiveSessionMessages = async (
@@ -97,14 +97,14 @@ export const createServiceBusClient = ({
       delete senderByAddress[address];
     }
 
-    const keys = Object.keys(receivers);
+    const keys = Object.keys(receiverSubscriptions);
     for (const key of keys) {
-      const receiver = receivers[key];
-      if (receiver.subscription) {
-        await receiver.subscription.close();
+      const entry = receiverSubscriptions[key];
+      if (entry.subscription) {
+        await entry.subscription.close();
       }
-      await receiver.close();
-      delete receivers[key];
+      await entry.receiver.close();
+      delete receiverSubscriptions[key];
     }
 
     await client.close();
