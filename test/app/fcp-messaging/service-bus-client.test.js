@@ -106,6 +106,39 @@ describe("createServiceBusClient", () => {
     });
   });
 
+  describe("sendMessages", () => {
+    it("should send a message using a created sender", async () => {
+      const client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
+
+      await client.sendMessages({ body: { field1: "value1" } }, "queue1");
+
+      expect(mockClient.createSender).toHaveBeenCalledWith("queue1");
+      expect(mockSender.sendMessages).toHaveBeenCalledWith({
+        body: { field1: "value1" },
+      });
+    });
+
+    it("should reuse an existing sender for the same address", async () => {
+      const client = createServiceBusClient({
+        host: "host",
+        username: "user",
+        password: "pass",
+        proxyUrl: "http://proxy.example.com",
+      });
+
+      await client.sendMessages({ body: "msg1" }, "queue1");
+      await client.sendMessages({ body: "msg2" }, "queue1");
+
+      expect(mockClient.createSender).toHaveBeenCalledTimes(1);
+      expect(mockSender.sendMessages).toHaveBeenCalledTimes(2);
+    });
+  });
+
   describe("close", () => {
     it("should close all senders, receivers and the client", async () => {
       const client = createServiceBusClient({
@@ -229,6 +262,29 @@ describe("createServiceBusClient", () => {
       );
       expect(mockReceiver.receiveMessages).toHaveBeenCalledWith(2, {
         maxWaitTimeInMs: 60000,
+      });
+      expect(result).toEqual(["msg1", "msg2"]);
+    });
+
+    it("should accept a session and receive messages without options", async () => {
+      const queueName = "test-queue";
+      const sessionId = "abc123";
+      const count = 2;
+      mockReceiver.receiveMessages.mockResolvedValue(["msg1", "msg2"]);
+
+      const result = await client.receiveSessionMessages(
+        queueName,
+        sessionId,
+        count
+      );
+
+      expect(mockClient.acceptSession).toHaveBeenCalledWith(
+        queueName,
+        sessionId,
+        {}
+      );
+      expect(mockReceiver.receiveMessages).toHaveBeenCalledWith(2, {
+        maxWaitTimeInMs: 30000,
       });
       expect(result).toEqual(["msg1", "msg2"]);
     });
