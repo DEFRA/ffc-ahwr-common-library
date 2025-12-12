@@ -52,28 +52,22 @@ export const createServiceBusClient = ({
         subscriptionName,
         receiverOptions
       );
-      receivers[key] = { receiver };
+      const subscription = receiver.subscribe(
+        {
+          // Add receiver to allow caller to complete/defer/dead-letter message
+          processMessage: (message) => processMessage(message, receiver),
+          processError,
+        },
+        {
+          autoCompleteMessages: false,
+          maxConcurrentCalls: 1,
+          ...subscribeOptions,
+        }
+      );
+      receivers[key] = { receiver, subscription };
     }
 
-    const entry = receivers[key];
-    if (entry.subscription) {
-      return entry.subscription;
-    }
-
-    entry.subscription = entry.receiver.subscribe(
-      {
-        // Add receiver to allow caller to complete/defer/dead-letter message
-        processMessage: (message) => processMessage(message, entry.receiver),
-        processError,
-      },
-      {
-        autoCompleteMessages: false,
-        maxConcurrentCalls: 1,
-        ...subscribeOptions,
-      }
-    );
-
-    return entry.subscription;
+    return receivers[key].subscription;
   };
 
   const receiveSessionMessages = async (
