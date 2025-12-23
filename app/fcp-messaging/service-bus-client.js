@@ -118,7 +118,7 @@ export const createServiceBusClient = ({
       maxWaitTimeInMs: 30000,
       ...receiverOptions,
     });
-    return messages;
+    return { receiver, messages };
   };
 
   const close = async () => {

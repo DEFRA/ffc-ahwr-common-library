@@ -263,7 +263,10 @@ describe("createServiceBusClient", () => {
       expect(mockReceiver.receiveMessages).toHaveBeenCalledWith(2, {
         maxWaitTimeInMs: 60000,
       });
-      expect(result).toEqual(["msg1", "msg2"]);
+      expect(result).toEqual({
+        receiver: mockReceiver,
+        messages: ["msg1", "msg2"],
+      });
     });
 
     it("should accept a session and receive messages without options", async () => {
@@ -286,7 +289,10 @@ describe("createServiceBusClient", () => {
       expect(mockReceiver.receiveMessages).toHaveBeenCalledWith(2, {
         maxWaitTimeInMs: 30000,
       });
-      expect(result).toEqual(["msg1", "msg2"]);
+      expect(result).toEqual({
+        receiver: mockReceiver,
+        messages: ["msg1", "msg2"],
+      });
     });
   });
 });
