@@ -102,7 +102,7 @@ export const createServiceBusClient = ({
   const subscribeTopic = (params) =>
     createReceiverSubscription(client, receiverSubscriptions, params);
 
- const receiveSessionMessages = async (
+  const receiveSessionMessages = async (
     queueName,
     sessionId,
     count,
@@ -117,7 +117,7 @@ export const createServiceBusClient = ({
     const messages = await receiver.receiveMessages(count, {
       maxWaitTimeInMs: 30000,
       ...receiverOptions,
-    }); 
+    });
     return { receiver, messages };
   };
 
