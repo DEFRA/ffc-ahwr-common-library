@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.4.1
+
+### Patch Changes
+
+- a34993f: return messages and receiver from receiveSessionMessages
+
 ## 3.4.0
 
 ### Minor Changes
