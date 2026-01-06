@@ -175,7 +175,7 @@ describe("message processing", () => {
 
     consumer.onMessage.mockReset();
 
-    const err = new Error("Test error")
+    const err = new Error("Test error");
 
     consumer.onMessage.mockImplementationOnce(() => {
       consumer.isRunning = false; // just take 1 message
