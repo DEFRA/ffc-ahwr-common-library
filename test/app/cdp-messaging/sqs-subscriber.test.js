@@ -185,7 +185,7 @@ describe("message processing", () => {
     await consumer.start();
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      err,
+      { error: err },
       "Error processing SQS message msg-1"
     );
   });
