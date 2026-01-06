@@ -175,20 +175,17 @@ describe("message processing", () => {
 
     consumer.onMessage.mockReset();
 
+    const err = new Error("Test error");
+
     consumer.onMessage.mockImplementationOnce(() => {
       consumer.isRunning = false; // just take 1 message
-      return Promise.reject(new Error("Test error"));
+      return Promise.reject(err);
     });
 
     await consumer.start();
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      {
-        error: {
-          message: "Test error",
-          stack: expect.any(String),
-        },
-      },
+      { error: err },
       "Error processing SQS message msg-1"
     );
   });
