@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.4.2
+
+### Patch Changes
+
+- 43a3363: Log raw error object when error processing message
+
 ## 3.4.1
 
 ### Patch Changes
