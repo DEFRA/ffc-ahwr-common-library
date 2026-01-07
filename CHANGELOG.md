@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.5.0
+
+### Minor Changes
+
+- 6ec552c: add uplifted payment rates
+
 ## 3.4.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "ffc-ahwr-common-library",
-  "version": "3.4.2",
+  "version": "3.5.0",
   "description": "Common functionality npm module for ahwr services",
   "engines": {
     "node": ">=20"
