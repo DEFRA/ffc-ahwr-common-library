@@ -7,7 +7,7 @@ import {
 } from "../constants.js";
 import { pricesOriginal, pricesUplifted } from "./prices.js";
 
-const isPostPriceUplift = (dateOfVisit) => {
+const isPostPaymentRateUplift = (dateOfVisit) => {
   const dateOfVisitParsed = new Date(dateOfVisit);
   if (Number.isNaN(dateOfVisitParsed.getTime())) {
     throw new TypeError(
@@ -87,7 +87,7 @@ export const getAmount = (data) => {
   const { type, typeOfLivestock, reviewTestResults, dateOfVisit } = data;
   const typeOfClaim = type === CLAIM_TYPE.review ? "review" : "followUp";
 
-  const prices = isPostPriceUplift(dateOfVisit)
+  const prices = isPostPaymentRateUplift(dateOfVisit)
     ? pricesUplifted
     : pricesOriginal;
 
