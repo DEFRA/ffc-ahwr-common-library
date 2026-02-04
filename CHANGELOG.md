@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.5.1
+
+### Patch Changes
+
+- ad7910e: Update dependencies
+
 ## 3.5.0
 
 ### Minor Changes
