@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.5.4
+
+### Patch Changes
+
+- ec6abe6: Bumpagain
+
 ## 3.5.3
 
 ### Patch Changes
