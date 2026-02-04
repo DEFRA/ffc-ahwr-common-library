@@ -43,7 +43,7 @@ await eventPublisher.sendEvent({
     properties: {
       id: '1234567890',
       sbi: '123456789',
-      cph: '123/456/789`
+      cph: '123/456/789`,
       checkpoint: 'tests-service',
       status : 'success',
       action: {
