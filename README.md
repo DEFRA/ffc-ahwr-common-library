@@ -31,6 +31,7 @@ Message objects must follow the below structure.
 
 `data` - an object of the data associated to the raised event
 
+
 #### Example usage
 
 ```
