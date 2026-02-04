@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.5.2
+
+### Patch Changes
+
+- 05f4b4e: Bump version after token expiry issue
+
 ## 3.5.1
 
 ### Patch Changes
