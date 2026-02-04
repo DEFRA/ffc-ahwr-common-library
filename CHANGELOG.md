@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.5.3
+
+### Patch Changes
+
+- 5a283b1: Bump again
+
 ## 3.5.2
 
 ### Patch Changes
