@@ -1,5 +1,12 @@
 # ffc-ahwr-common-library
 
+## 3.5.5
+
+### Patch Changes
+
+- c447e01: Updating aws packages due to dependency vulnerability
+- 51e4776: Updating dependencies due to minimatch vulnerability
+
 ## 3.5.4
 
 ### Patch Changes
