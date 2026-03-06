@@ -23,14 +23,7 @@ describe("peekMessages", () => {
   });
 
   it("throws error if client not setup", async () => {
-    await expect(
-      peekMessages({
-        queueUrl: "test-queue",
-        limit: 5,
-        logger,
-        receiveOptions: {},
-      })
-    ).rejects.toThrow(
+    await expect(peekMessages("test-queue", 5, {})).rejects.toThrow(
       "SQS client not setup. Call setupClient() before publishing messages."
     );
   });
@@ -49,15 +42,10 @@ describe("peekMessages", () => {
     });
 
     setupClient("eu-west-1", "http://localhost:4566", logger);
-    const result = await peekMessages({
-      queueUrl: "test-queue",
-      limit: 1,
-      receiveOptions: {},
-    });
+    const result = await peekMessages("test-queue", 1, {});
 
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock.mock.calls[0][0]).toBeInstanceOf(ReceiveMessageCommand);
-
     expect(result).toEqual([
       {
         id: "1",
@@ -66,7 +54,6 @@ describe("peekMessages", () => {
         messageAttributes: { attr1: { StringValue: "value1" } },
       },
     ]);
-
     expect(logger.info).toHaveBeenCalledWith("Retrieved 1 messages");
   });
 
@@ -74,12 +61,7 @@ describe("peekMessages", () => {
     sendMock.mockResolvedValue({});
 
     setupClient("eu-west-1", "http://localhost:4566", logger);
-
-    const result = await peekMessages({
-      queueUrl: "test-queue",
-      limit: 5,
-      receiveOptions: {},
-    });
+    const result = await peekMessages("test-queue", 5, {});
 
     expect(result).toEqual([]);
     expect(logger.info).toHaveBeenCalledWith("Retrieved 0 messages");

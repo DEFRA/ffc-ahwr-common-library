@@ -11,7 +11,7 @@ export const setupClient = (region, awsEndpointUrl, logger) => {
   loggerInstance = logger;
 };
 
-export const peekMessages = async ({ queueUrl, limit, receiveOptions }) => {
+export const peekMessages = async (queueUrl, limit, receiveOptions) => {
   if (!sqsClient) {
     throw new Error(
       "SQS client not setup. Call setupClient() before publishing messages."
