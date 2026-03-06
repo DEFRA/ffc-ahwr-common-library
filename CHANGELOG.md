@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.6.0
+
+### Minor Changes
+
+- ff6838b: added sqs client to peak messages
+
 ## 3.5.5
 
 ### Patch Changes
