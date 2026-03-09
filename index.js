@@ -11,3 +11,4 @@ export * from "./app/emails/reminders-helper.js";
 export * from "./app/cdp-messaging/sns-client.js";
 export * from "./app/cdp-messaging/sqs-subscriber.js";
 export * from "./app/cdp-messaging/trace-parent.js";
+export * as sqsClient from "./app/cdp-messaging/sqs-client.js";
