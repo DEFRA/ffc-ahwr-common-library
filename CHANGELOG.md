@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.6.2
+
+### Patch Changes
+
+- 5725ab1: Adding poultry types
+
 ## 3.6.1
 
 ### Patch Changes
