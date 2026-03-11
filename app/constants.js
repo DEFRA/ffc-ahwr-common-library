@@ -36,6 +36,14 @@ export const TYPE_OF_LIVESTOCK = {
   SHEEP: "sheep",
 };
 
+export const TYPE_OF_POULTRY = {
+  BROILERS: "broilers",
+  LAYING: "laying",
+  GEESE: "geese",
+  DUCKS: "ducks",
+  TURKEYS: "turkeys",
+};
+
 export const vaccinationStatus = {
   vaccinated: "vaccinated",
   notVaccinated: "notVaccinated",
