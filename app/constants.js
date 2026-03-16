@@ -143,9 +143,11 @@ export const PIGS_AND_PAYMENTS_RELEASE_DATE = new Date("2026-01-22T00:00:00");
 
 export const APPLICATION_REFERENCE_PREFIX_OLD_WORLD = "AHWR-";
 export const APPLICATION_REFERENCE_PREFIX_NEW_WORLD = "IAHW-";
+export const APPLICATION_REFERENCE_PREFIX_POULTRY = "POUL-";
 
 export const UNNAMED_FLOCK = "Unnamed flock";
 export const UNNAMED_HERD = "Unnamed herd";
 
 export const AHWR_SCHEME = "ahwr";
-export const SUPPORTED_SCHEMES = [AHWR_SCHEME];
+export const POULTRY_SCHEME = "poul";
+export const SUPPORTED_SCHEMES = [AHWR_SCHEME, POULTRY_SCHEME];
