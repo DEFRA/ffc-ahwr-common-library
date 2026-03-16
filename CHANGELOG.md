@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.6.3
+
+### Patch Changes
+
+- 3e8f23a: Adding constants for poultry scheme
+
 ## 3.6.2
 
 ### Patch Changes
