@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.6.4
+
+### Patch Changes
+
+- 5cb6317: Setting up the structure needed for poultry prices
+
 ## 3.6.3
 
 ### Patch Changes
