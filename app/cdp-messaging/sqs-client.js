@@ -18,20 +18,35 @@ export const peekMessages = async (queueUrl, limit, receiveOptions) => {
     );
   }
 
-  const command = new ReceiveMessageCommand({
-    QueueUrl: queueUrl,
-    MaxNumberOfMessages: limit,
-    VisibilityTimeout: 0,
-    WaitTimeSeconds: 0,
-    AttributeNames: ["All"],
-    MessageAttributeNames: ["All"],
-    ...receiveOptions,
-  });
-  const result = await sqsClient.send(command);
+  const messageById = new Map();
+  let emptyStreak = 0;
 
-  loggerInstance.info(`Retrieved ${result.Messages?.length || 0} messages`);
+  while (messageById.size < limit && emptyStreak < 3) {
+    const command = new ReceiveMessageCommand({
+      QueueUrl: queueUrl,
+      MaxNumberOfMessages: Math.min(limit - messageById.size, 10),
+      VisibilityTimeout: 0,
+      WaitTimeSeconds: 0,
+      AttributeNames: ["All"],
+      MessageAttributeNames: ["All"],
+      ...receiveOptions,
+    });
 
-  return (result.Messages || []).map((msg) => ({
+    const messages = (await sqsClient.send(command)).Messages || [];
+
+    if (messages.length === 0) {
+      emptyStreak++;
+    } else {
+      emptyStreak = 0;
+      for (const msg of messages) {
+        messageById.set(msg.MessageId, msg);
+      }
+    }
+  }
+
+  loggerInstance.info(`Retrieved ${messageById.size} messages`);
+
+  return Array.from(messageById.values()).map((msg) => ({
     id: msg.MessageId,
     body: msg.Body,
     attributes: msg.Attributes,
