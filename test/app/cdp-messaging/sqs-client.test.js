@@ -75,12 +75,7 @@ describe("peekMessages", () => {
   });
 
   it("deduplicates messages with the same MessageId", async () => {
-    const duplicateMessage = {
-      MessageId: "1",
-      Body: "body",
-      Attributes: {},
-      MessageAttributes: {},
-    };
+    const duplicateMessage = createMsg("1");
     sendMock
       .mockResolvedValueOnce({ Messages: [duplicateMessage] })
       .mockResolvedValueOnce({ Messages: [duplicateMessage] })
