@@ -1,5 +1,7 @@
 import { ReceiveMessageCommand, SQSClient } from "@aws-sdk/client-sqs";
 
+const MAX_EMPTY_STREAK = 3;
+
 let sqsClient;
 let loggerInstance;
 
@@ -21,7 +23,7 @@ export const peekMessages = async (queueUrl, limit, receiveOptions) => {
   const messageById = new Map();
   let emptyStreak = 0;
 
-  while (messageById.size < limit && emptyStreak < 3) {
+  while (messageById.size < limit && emptyStreak < MAX_EMPTY_STREAK) {
     const command = new ReceiveMessageCommand({
       QueueUrl: queueUrl,
       MaxNumberOfMessages: Math.min(limit - messageById.size, 10),
