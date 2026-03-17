@@ -26,7 +26,7 @@ export const peekMessages = async (queueUrl, limit, receiveOptions) => {
   while (messageById.size < limit && emptyStreak < MAX_EMPTY_STREAK) {
     const command = new ReceiveMessageCommand({
       QueueUrl: queueUrl,
-      MaxNumberOfMessages: Math.min(limit - messageById.size, 10),
+      MaxNumberOfMessages: Math.min(limit, 10),
       VisibilityTimeout: 0,
       WaitTimeSeconds: 0,
       AttributeNames: ["All"],
