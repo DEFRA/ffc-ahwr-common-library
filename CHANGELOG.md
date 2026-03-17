@@ -1,5 +1,12 @@
 # ffc-ahwr-common-library
 
+## 3.6.5
+
+### Patch Changes
+
+- 37ba526: poll for messages when peeking sqs messages
+- 37ba526: export sqs client
+
 ## 3.6.4
 
 ### Patch Changes
