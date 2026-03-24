@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.6.6
+
+### Patch Changes
+
+- b6f52de: stopped polling sqs messages after 3 attempts
+
 ## 3.6.5
 
 ### Patch Changes
