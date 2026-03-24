@@ -122,4 +122,14 @@ describe("peekMessages", () => {
     expect(result).toHaveLength(2);
     expect(result.map((m) => m.id)).toEqual(["1", "2"]);
   });
+
+  it("stops polling if the user requests more messages than whats available", async () => {
+    sendMock.mockResolvedValue({ Messages: [createMsg("1"), createMsg("2")] });
+
+    setupClient("eu-west-1", "http://localhost:4566", logger);
+    const result = await peekMessages("test-queue", 4, {});
+
+    expect(result).toHaveLength(2);
+    expect(sendMock).toHaveBeenCalledTimes(3);
+  });
 });
