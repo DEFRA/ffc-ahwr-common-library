@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.7.0
+
+### Minor Changes
+
+- e287add: get scheme
+
 ## 3.6.6
 
 ### Patch Changes
