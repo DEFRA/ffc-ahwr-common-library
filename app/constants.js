@@ -151,3 +151,8 @@ export const UNNAMED_HERD = "Unnamed herd";
 export const AHWR_SCHEME = "ahwr";
 export const POULTRY_SCHEME = "poul";
 export const SUPPORTED_SCHEMES = [AHWR_SCHEME, POULTRY_SCHEME];
+
+export const getScheme = (reference) =>
+  reference.startsWith(APPLICATION_REFERENCE_PREFIX_POULTRY)
+    ? POULTRY_SCHEME
+    : AHWR_SCHEME;
