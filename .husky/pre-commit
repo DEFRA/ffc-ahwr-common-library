@@ -8,4 +8,5 @@ if [ "$currentUser" != "github-actions[bot]" ]; then
     fi
 fi
 
+pre-commit run --all-files
 lint-staged

@@ -62,6 +62,8 @@ await eventPublisher.sendEvent({
 
 ## Making changes
 
+Install [pre-commit](https://pre-commit.com/), as it is used to scan commits for secrets using [Gitleaks](https://github.com/gitleaks/gitleaks).
+
 To make changes to this library, please follow the steps below:
 1. Make the changes as usual to the codebase. Ensure your changes are exported via the index.js file!
 2. Run `npm run version:create` OR `npx @changesets/cli` to create a changeset file. This will guide you through the process of documenting your changes.`
