@@ -7,3 +7,5 @@ if [ "$currentUser" != "github-actions[bot]" ]; then
       exit 1
     fi
 fi
+
+lint-staged
