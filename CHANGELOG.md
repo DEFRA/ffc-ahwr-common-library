@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.7.1
+
+### Patch Changes
+
+- 8a8a3f5: Changing the poultry pricing
+
 ## 3.7.0
 
 ### Minor Changes
