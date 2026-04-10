@@ -7,3 +7,6 @@ if [ "$currentUser" != "github-actions[bot]" ]; then
       exit 1
     fi
 fi
+
+pre-commit run --all-files
+lint-staged
