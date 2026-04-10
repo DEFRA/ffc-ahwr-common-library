@@ -14,7 +14,7 @@
   },
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "github:release": "npx cdp-github-release ffc-ahwr-common-library",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
