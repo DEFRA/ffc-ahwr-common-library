@@ -49,6 +49,8 @@ export const pricesOriginal = {
   },
 };
 
+export const poultryPrice = { value: 430, code: "AHWR-Poultry" };
+
 export const pricesUplifted = {
   review: {
     beef: {
@@ -66,27 +68,6 @@ export const pricesUplifted = {
     sheep: {
       value: 574,
       code: "AHWR-Sheep",
-    },
-    // The values before will need to be corrected
-    broilers: {
-      value: 574,
-      code: "POUL-Broilers",
-    },
-    laying: {
-      value: 574,
-      code: "POUL-Laying",
-    },
-    ducks: {
-      value: 574,
-      code: "POUL-Ducks",
-    },
-    geese: {
-      value: 574,
-      code: "POUL-Geese",
-    },
-    turkeys: {
-      value: 574,
-      code: "POUL-Turkeys",
     },
   },
   followUp: {
