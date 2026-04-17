@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.7.2
+
+### Patch Changes
+
+- 1db3b40: Updated constants for poultry
+
 ## 3.7.1
 
 ### Patch Changes
