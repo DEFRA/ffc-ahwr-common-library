@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.7.3
+
+### Patch Changes
+
+- b178e9a: Poultry constants used both in public-user-ui and backoffice-ui
+
 ## 3.7.2
 
 ### Patch Changes
