@@ -155,7 +155,49 @@ export const AHWR_SCHEME = "ahwr";
 export const POULTRY_SCHEME = "poul";
 export const SUPPORTED_SCHEMES = [AHWR_SCHEME, POULTRY_SCHEME];
 
+/**
+ * Determines the scheme based on an application reference prefix.
+ * @param {string} reference - The application reference (e.g., "POUL-1234" or "IAHW-5678")
+ * @returns {typeof AHWR_SCHEME | typeof POULTRY_SCHEME} The scheme identifier
+ */
 export const getScheme = (reference) =>
   reference.startsWith(APPLICATION_REFERENCE_PREFIX_POULTRY)
     ? POULTRY_SCHEME
     : AHWR_SCHEME;
+
+export const biosecurityUsefulnessLabels = {
+  "very-useful": "Very useful",
+  "somewhat-useful": "Somewhat useful",
+  "not-very-useful": "Not very useful",
+  "not-useful": "Not useful at all",
+  "not-sure": "I am not sure yet",
+};
+
+export const changesInBiosecurityLabels = {
+  "infra-and-control":
+    "Housing, buildings, infrastructure, and wild bird control",
+  "people-and-hygiene": "People, visitors, and hygiene procedures",
+  "movement-and-management": "Bird movements, and flock management",
+  "bird-handling": "Feed, water, bedding, eggs, and waste handling",
+  cleaning: "Cleaning, disinfection, and disease control",
+  "no-recommendation": "No recommendations were made in my review",
+};
+
+export const costOfChangesLabels = {
+  "0-1500": "Up to £1,500",
+  "1500-3000": "£1,500 to £3,000",
+  "3000-4500": "£3,000 to £4,500",
+  "over-4500": "Over £4,500",
+  "not-sure": "I am not sure about the cost",
+  "no-intention": "I do not intend to make changes",
+};
+
+/**
+ * Formats an array of poultry types for readable display.
+ * @param {string[]} typesOfPoultry - Array of poultry type values from TYPE_OF_POULTRY
+ * @returns {string} Comma-separated, human-readable poultry types
+ * @example
+ * typesOfPoultryToDisplay(['broilers', 'laying-hens']) // Returns 'broilers, laying hens'
+ */
+export const typesOfPoultryToDisplay = (typesOfPoultry) =>
+  typesOfPoultry.join(", ").replace("-", " ");
