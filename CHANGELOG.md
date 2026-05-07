@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.7.4
+
+### Patch Changes
+
+- 3404a0d: fixed constant name formatting
+
 ## 3.7.3
 
 ### Patch Changes
