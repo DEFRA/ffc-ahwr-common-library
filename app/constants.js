@@ -165,7 +165,7 @@ export const getScheme = (reference) =>
     ? POULTRY_SCHEME
     : AHWR_SCHEME;
 
-export const biosecurityUsefulnessLabels = {
+export const BIOSECURITY_USEFULNESS_LABELS = {
   "very-useful": "Very useful",
   "somewhat-useful": "Somewhat useful",
   "not-very-useful": "Not very useful",
@@ -173,7 +173,7 @@ export const biosecurityUsefulnessLabels = {
   "not-sure": "I am not sure yet",
 };
 
-export const changesInBiosecurityLabels = {
+export const CHANGES_IN_BIOSECURITY_LABELS = {
   "infra-and-control":
     "Housing, buildings, infrastructure, and wild bird control",
   "people-and-hygiene": "People, visitors, and hygiene procedures",
@@ -183,7 +183,7 @@ export const changesInBiosecurityLabels = {
   "no-recommendation": "No recommendations were made in my review",
 };
 
-export const costOfChangesLabels = {
+export const COST_OF_CHANGES_LABELS = {
   "0-1500": "Up to £1,500",
   "1500-3000": "£1,500 to £3,000",
   "3000-4500": "£3,000 to £4,500",
