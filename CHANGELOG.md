@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.8.0
+
+### Minor Changes
+
+- d9a83bf: updated .npmrc with defra node security standards
+
 ## 3.7.4
 
 ### Patch Changes
