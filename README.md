@@ -11,6 +11,18 @@ npm install --save ffc-ahwr-common-library
 
 ```
 
+### Development setup
+
+This project uses Husky to manage Git hooks for local development.
+
+After cloning the repository, install dependencies:
+
+```bash
+npm install
+```
+
+The `prepare` script will automatically configure Husky and install the required Git hooks.
+
 ### Send event
 
 Message objects must follow the below structure.
@@ -30,7 +42,6 @@ Message objects must follow the below structure.
 `message` - description of the raised event
 
 `data` - an object of the data associated to the raised event
-
 
 #### Example usage
 
@@ -63,7 +74,6 @@ await eventPublisher.sendEvent({
 ## Making changes
 
 Refer to the [contributing documentation](CONTRIBUTING.md).
-
 
 ## Licence
 
