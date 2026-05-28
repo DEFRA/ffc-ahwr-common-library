@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.8.2
+
+### Patch Changes
+
+- e41eb0f: trigger release
+
 ## 3.8.1
 
 ### Patch Changes
