@@ -9,4 +9,4 @@ if [ "$currentUser" != "github-actions[bot]" ]; then
 fi
 
 pre-commit run --all-files
-lint-staged
+nano-staged

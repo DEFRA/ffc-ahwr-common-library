@@ -50,7 +50,7 @@
     "husky": "9.1.7",
     "jest": "30.2.0",
     "jest-junit": "16.0.0",
-    "lint-staged": "16.4.0",
+    "nano-staged": "1.0.2",
     "neostandard": "0.13.0"
   },
   "babel": {
@@ -79,7 +79,7 @@
   "bin": {
     "cdp-github-release": "ci/release-it.sh"
   },
-  "lint-staged": {
+  "nano-staged": {
     "*.js": [
       "eslint --fix",
       "prettier --write"
