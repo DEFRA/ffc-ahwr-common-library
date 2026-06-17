@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.8.3
+
+### Patch Changes
+
+- 50a919d: Updated dependencies
+
 ## 3.8.2
 
 ### Patch Changes
