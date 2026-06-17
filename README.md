@@ -21,8 +21,6 @@ After cloning the repository, install dependencies:
 npm install
 ```
 
-The `prepare` script will automatically configure Husky and install the required Git hooks.
-
 ### Send event
 
 Message objects must follow the below structure.
