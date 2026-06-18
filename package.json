@@ -17,6 +17,7 @@
     "prepare": "husky",
     "github:release": "npx cdp-github-release ffc-ahwr-common-library",
     "lint": "eslint",
+    "lint:deps": "knip --production --include dependencies,unlisted,unresolved",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check \"**/*.{cjs,js,json}\"",
     "prettier:fix": "prettier --write \"**/*.{cjs,js,json}\"",
@@ -51,6 +52,7 @@
     "husky": "9.1.7",
     "jest": "30.4.2",
     "jest-junit": "17.0.0",
+    "knip": "6.17.1",
     "nano-staged": "1.0.2",
     "neostandard": "0.13.0"
   },
