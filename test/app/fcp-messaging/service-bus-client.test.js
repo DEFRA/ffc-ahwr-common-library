@@ -5,7 +5,9 @@ import { HttpsProxyAgent } from "https-proxy-agent";
 
 jest.mock("@azure/service-bus");
 jest.mock("ws");
-jest.mock("https-proxy-agent");
+jest.mock("https-proxy-agent", () => ({
+  HttpsProxyAgent: jest.fn(),
+}));
 
 describe("createServiceBusClient", () => {
   let mockSender, mockClient, mockReceiver, mockSubscription;
