@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.8.5
+
+### Patch Changes
+
+- 8ee4439: Pin https-proxy-agent to 7.0.6 (CommonJS) to restore Jest compatibility in consuming services
+
 ## 3.8.4
 
 ### Patch Changes
