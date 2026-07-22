@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.8.4
+
+### Patch Changes
+
+- 6c5d35e: Updated ws to 8.21.1 to resolve SNYK-JS-WS-17988732
+
 ## 3.8.3
 
 ### Patch Changes
