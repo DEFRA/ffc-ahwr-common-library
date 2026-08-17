@@ -8,8 +8,8 @@ export default [
     ignores: [],
   }),
   eslintConfigPrettier,
+  sonarjs.configs.recommended,
   {
-    plugins: { sonarjs },
     rules: {
       "sonarjs/no-commented-code": "error",
     },
