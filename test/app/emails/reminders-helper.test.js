@@ -53,27 +53,25 @@ describe("getNextNotClaimedReminderToSend", () => {
 });
 
 describe("isValidReminderType", () => {
-  test("Valid parent and sub type should return true", () => {
-    const parentAndSubType = "notClaimed_sixMonths";
-
+  test.each([
+    [
+      "Valid parent and sub type should return true",
+      "notClaimed_sixMonths",
+      true,
+    ],
+    [
+      "Invalid parent type should return false",
+      "invalidParentType_sixMonths",
+      false,
+    ],
+    [
+      "Invalid sub type should return false",
+      "notClaimed_invalidSubType",
+      false,
+    ],
+  ])("%s", (_description, parentAndSubType, expected) => {
     const exists = isValidReminderType(parentAndSubType);
 
-    expect(exists).toBe(true);
-  });
-
-  test("Invalid parent type should return false", () => {
-    const parentAndSubType = "invalidParentType_sixMonths";
-
-    const exists = isValidReminderType(parentAndSubType);
-
-    expect(exists).toBe(false);
-  });
-
-  test("Invalid sub type should return false", () => {
-    const parentAndSubType = "notClaimed_invalidSubType";
-
-    const exists = isValidReminderType(parentAndSubType);
-
-    expect(exists).toBe(false);
+    expect(exists).toBe(expected);
   });
 });
