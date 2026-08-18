@@ -3,6 +3,7 @@ import {
   ReceiveMessageCommand,
   SQSClient,
 } from "@aws-sdk/client-sqs";
+import { setTimeout as sleep } from "node:timers/promises";
 import { SqsSubscriber } from "../../../app/cdp-messaging/sqs-subscriber.js";
 
 const mockLogger = {
@@ -11,6 +12,7 @@ const mockLogger = {
 };
 
 jest.mock("@aws-sdk/client-sqs");
+jest.mock("node:timers/promises");
 
 const timeoutSleepMs = 100;
 
@@ -67,23 +69,28 @@ describe("stop", () => {
 
 describe("error on polling", () => {
   it("error when polling waits for timeout period before running again, and logs errors", async () => {
+    // simulated clock advanced only by the backoff sleep
+    const clock = { now: 0 };
+    sleep.mockImplementation(async (ms) => {
+      clock.now += ms;
+    });
+
     const timeCaptures = [];
     consumer.sqsClient.send.mockImplementationOnce(() => {
-      timeCaptures.push(Date.now());
+      timeCaptures.push(clock.now);
       throw new Error("Test polling error");
     });
 
     consumer.sqsClient.send.mockImplementationOnce(() => {
-      timeCaptures.push(Date.now());
+      timeCaptures.push(clock.now);
       consumer.isRunning = false; // stop now
       throw new Error("Test polling error");
     });
 
     await consumer.start();
 
-    expect(timeCaptures[1] - timeCaptures[0]).toBeGreaterThanOrEqual(
-      timeoutSleepMs
-    );
+    // the retry polls only after waiting one timeout period
+    expect(timeCaptures).toEqual([0, timeoutSleepMs]);
     expect(mockLogger.error).toHaveBeenCalledWith(
       "Error polling SQS queue https://sqs.eu-west-2.amazonaws.com/123456789012/test-queue: Test polling error"
     );
