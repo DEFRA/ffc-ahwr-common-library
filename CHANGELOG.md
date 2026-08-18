@@ -1,5 +1,12 @@
 # ffc-ahwr-common-library
 
+## 3.8.6
+
+### Patch Changes
+
+- 6b3cfc5: Adding sonarjs plugin and rule for no-commented-code
+- 0733b28: Adding sonarjs recommended rules and acted upon them
+
 ## 3.8.5
 
 ### Patch Changes
