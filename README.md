@@ -107,7 +107,7 @@ To develop against a local [Azure Service Bus Emulator](https://learn.microsoft.
 const serviceBusClient = createServiceBusClient({
   host: "localhost", // or 'servicebus-emulator' etc. when running in Docker Compose
   username: "RootManageSharedAccessKey",
-  password: "SAS_KEY_VALUE", // the emulator's own documented placeholder, not a real secret
+  password: "SAS_KEY_VALUE",
   useDevelopmentEmulator: true,
 });
 ```
