@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.9.0
+
+### Minor Changes
+
+- add7cc9: Add `useDevelopmentEmulator` option to `createServiceBusClient`, so consuming services can connect to a local Azure Service Bus Emulator for development instead of a real namespace. When `true`, `;UseDevelopmentEmulator=true;` is appended to the connection string; existing callers are unaffected.
+
 ## 3.8.6
 
 ### Patch Changes
