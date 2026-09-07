@@ -79,8 +79,6 @@ describe("createServiceBusClient", () => {
     createServiceBusClient({
       host: "localhost",
       username: "RootManageSharedAccessKey",
-      // Not a real secret: the Azure Service Bus Emulator's own documented
-      // placeholder value, which it does not validate.
       // eslint-disable-next-line sonarjs/no-hardcoded-passwords
       password: "SAS_KEY_VALUE",
       useDevelopmentEmulator: true,
