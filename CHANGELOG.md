@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.9.1
+
+### Patch Changes
+
+- cf71c08: trigger release
+
 ## 3.9.0
 
 ### Minor Changes
