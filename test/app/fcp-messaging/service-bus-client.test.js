@@ -75,6 +75,38 @@ describe("createServiceBusClient", () => {
     );
   });
 
+  it("should append the UseDevelopmentEmulator flag when useDevelopmentEmulator is true", () => {
+    createServiceBusClient({
+      host: "localhost",
+      username: "RootManageSharedAccessKey",
+      // eslint-disable-next-line sonarjs/no-hardcoded-passwords
+      password: "SAS_KEY_VALUE",
+      useDevelopmentEmulator: true,
+    });
+
+    expect(ServiceBusClient).toHaveBeenCalledWith(
+      "Endpoint=sb://localhost/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;",
+      {
+        webSocketOptions: undefined,
+      }
+    );
+  });
+
+  it("should not append the UseDevelopmentEmulator flag when useDevelopmentEmulator is falsy", () => {
+    createServiceBusClient({
+      host: "test-host.servicebus.windows.net",
+      username: "user",
+      password: "pass",
+    });
+
+    expect(ServiceBusClient).toHaveBeenCalledWith(
+      "Endpoint=sb://test-host.servicebus.windows.net/;SharedAccessKeyName=user;SharedAccessKey=pass",
+      {
+        webSocketOptions: undefined,
+      }
+    );
+  });
+
   describe("sendMessage", () => {
     it("should send a message using a created sender", async () => {
       const client = createServiceBusClient({

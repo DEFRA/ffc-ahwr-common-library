@@ -70,6 +70,7 @@ export const createServiceBusClient = ({
   username,
   password,
   proxyUrl,
+  useDevelopmentEmulator,
 }) => {
   const senderByAddress = {};
   const receiverSubscriptions = {};
@@ -83,8 +84,12 @@ export const createServiceBusClient = ({
       }
     : undefined;
 
+  const emulatorSuffix = useDevelopmentEmulator
+    ? ";UseDevelopmentEmulator=true;"
+    : "";
+
   const client = new ServiceBusClient(
-    `Endpoint=sb://${host}/;SharedAccessKeyName=${username};SharedAccessKey=${password}`,
+    `Endpoint=sb://${host}/;SharedAccessKeyName=${username};SharedAccessKey=${password}${emulatorSuffix}`,
     { webSocketOptions }
   );
 
