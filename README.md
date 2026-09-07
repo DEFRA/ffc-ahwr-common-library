@@ -69,6 +69,51 @@ await eventPublisher.sendEvent({
 
 ```
 
+### Service Bus
+
+`createServiceBusClient` wraps `@azure/service-bus` for sending messages to a topic/queue, subscribing to a topic, and receiving session messages.
+
+```js
+import { createServiceBusClient } from "ffc-ahwr-common-library";
+
+const serviceBusClient = createServiceBusClient({
+  host, // e.g. 'my-namespace.servicebus.windows.net'
+  username,
+  password,
+  proxyUrl, // optional, routes the AMQP connection over a WebSocket proxy
+});
+
+await serviceBusClient.sendMessage({ body: payload }, "my-topic");
+
+serviceBusClient.subscribeTopic({
+  topicName: "my-topic",
+  subscriptionName: "my-subscription",
+  processMessage: (message, receiver) => {
+    /* ... */
+  },
+  processError: (args) => {
+    /* ... */
+  },
+});
+
+await serviceBusClient.close();
+```
+
+#### Local development (Service Bus Emulator)
+
+To develop against a local [Azure Service Bus Emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator) instead of a real namespace, pass `useDevelopmentEmulator: true`. This appends `;UseDevelopmentEmulator=true;` to the connection string, which the SDK uses to connect over plain AMQP on port `5672` rather than AMQPS - matching the ports the emulator listens on.
+
+```js
+const serviceBusClient = createServiceBusClient({
+  host: "localhost", // or 'servicebus-emulator' etc. when running in Docker Compose
+  username: "RootManageSharedAccessKey",
+  password: "SAS_KEY_VALUE", // the emulator's own documented placeholder, not a real secret
+  useDevelopmentEmulator: true,
+});
+```
+
+The topics/queues/subscriptions you send to or subscribe from must be pre-provisioned in the emulator's own config file (mounted into the container) - the emulator doesn't create entities on demand. See `ahwr-payment-proxy`'s `compose.yml` and `compose/servicebus-emulator-config.json` for a working example, including the SQL Edge container the emulator needs for its own metadata.
+
 ## Making changes
 
 Refer to the [contributing documentation](CONTRIBUTING.md).
