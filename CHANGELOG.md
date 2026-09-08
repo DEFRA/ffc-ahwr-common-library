@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.9.2
+
+### Patch Changes
+
+- 21d1ea3: trigger new release with new token
+
 ## 3.9.1
 
 ### Patch Changes
