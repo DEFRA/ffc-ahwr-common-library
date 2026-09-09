@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.10.0
+
+### Minor Changes
+
+- bcee4f9: Adding new pig sequencing value
+
 ## 3.9.2
 
 ### Patch Changes
