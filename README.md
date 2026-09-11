@@ -114,6 +114,16 @@ const serviceBusClient = createServiceBusClient({
 
 The topics/queues/subscriptions you send to or subscribe from must be pre-provisioned in the emulator's own config file (mounted into the container) - the emulator doesn't create entities on demand. See `ahwr-payment-proxy`'s `compose.yml` and `compose/servicebus-emulator-config.json` for a working example, including the SQL Edge container the emulator needs for its own metadata.
 
+## Dependabot
+
+Currently setup to work into four groups, so we don't have PRs per package. The updates run once a week, on a Monday. Except for the security group, which is advisory-triggered and ignores the schedule.
+
+## SonarCloud
+
+This project is set up to integrate with sonarcloud, and scans will be performed on all pull requests, and on
+publish to main branch. We follow the quality gates as per DEFRA standards, and if coverage falls below the
+acceptable level, or new issues are introduced the build will fail.
+
 ## Making changes
 
 Refer to the [contributing documentation](CONTRIBUTING.md).
