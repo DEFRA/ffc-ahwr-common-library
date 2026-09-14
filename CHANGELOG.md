@@ -1,5 +1,14 @@
 # ffc-ahwr-common-library
 
+## 3.11.0
+
+### Minor Changes
+
+- 3121b88: Add dead-letter queue action helpers to the `sqsClient`: `getDeadLetterSourceQueues` and
+  `isDeadLetterQueue` (both resolved authoritatively via `ListDeadLetterSourceQueues`, no naming
+  convention), and `applyDlqActions` to delete or reapply (redrive to the resolved source queue)
+  individual DLQ messages matched by MessageId.
+
 ## 3.10.0
 
 ### Minor Changes
