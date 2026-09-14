@@ -38,7 +38,7 @@
     "@aws-sdk/client-sqs": "3.1015.0",
     "@azure/service-bus": "7.9.5",
     "https-proxy-agent": "7.0.6",
-    "joi": "18.2.1",
+    "joi": "18.2.9",
     "ws": "8.21.1"
   },
   "devDependencies": {
