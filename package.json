@@ -46,7 +46,7 @@
     "@babel/plugin-transform-export-namespace-from": "7.29.7",
     "@babel/plugin-transform-modules-commonjs": "7.29.7",
     "@changesets/changelog-github": "1.0.1",
-    "@changesets/cli": "2.31.0",
+    "@changesets/cli": "3.0.2",
     "@types/jest": "30.0.0",
     "babel-jest": "30.5.1",
     "eslint": "9.39.3",
