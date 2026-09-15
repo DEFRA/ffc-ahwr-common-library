@@ -3,5 +3,5 @@ projectKey=ffc-ahwr-common-library
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.105984
 dashboardUrl=https://sonarcloud.io/dashboard?id=ffc-ahwr-common-library&branch=main
-ceTaskId=AaCkLyNmUM_T58YFpdWw
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AaCkLyNmUM_T58YFpdWw
+ceTaskId=AaCkMLERqUW9iW54UHzZ
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AaCkMLERqUW9iW54UHzZ
