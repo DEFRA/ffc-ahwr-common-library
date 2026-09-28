@@ -34,8 +34,8 @@
   },
   "homepage": "https://github.com/DEFRA/ffc-ahwr-common-library#readme",
   "dependencies": {
-    "@aws-sdk/client-sns": "3.1131.0",
-    "@aws-sdk/client-sqs": "3.1131.0",
+    "@aws-sdk/client-sns": "3.1136.0",
+    "@aws-sdk/client-sqs": "3.1136.0",
     "@azure/service-bus": "7.9.5",
     "https-proxy-agent": "9.1.0",
     "joi": "18.2.9",
