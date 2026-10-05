@@ -1,6 +1,6 @@
 export const pricesOriginal = {
   review: {
-    beef: {
+    beef: { 
       value: 522,
       code: "AHWR-Beef",
     },
