@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.11.1
+
+### Patch Changes
+
+- 8711002: updating dependencies
+
 ## 3.11.0
 
 ### Minor Changes
