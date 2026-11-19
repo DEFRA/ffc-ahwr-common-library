@@ -57,7 +57,7 @@
     "jest-junit": "17.0.0",
     "knip": "6.35.1",
     "nano-staged": "1.0.2",
-    "neostandard": "0.13.0"
+    "neostandard": "0.14.1"
   },
   "babel": {
     "plugins": [
