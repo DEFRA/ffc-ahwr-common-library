@@ -1,7 +1,6 @@
 organization=defra
 projectKey=ffc-ahwr-common-library
 serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.113727
 dashboardUrl=https://sonarcloud.io/dashboard?id=ffc-ahwr-common-library&branch=main
-ceTaskId=AaFnpYz6qdLc5m74ZEqn
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AaFnpYz6qdLc5m74ZEqn
+ceTaskId=AaHzv1A__p6Gi5MM2qAP
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AaHzv1A__p6Gi5MM2qAP

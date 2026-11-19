@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.11.2
+
+### Patch Changes
+
+- c5ae5aa: Bump joi to 18.3.2 to fix high-severity advisory GHSA-4528-x5fx-h6hg
+
 ## 3.11.1
 
 ### Patch Changes
