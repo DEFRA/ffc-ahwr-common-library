@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.11.4
+
+### Patch Changes
+
+- dc5ecfd: update dependencies
+
 ## 3.11.3
 
 ### Patch Changes
