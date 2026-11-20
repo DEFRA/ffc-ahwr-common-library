@@ -40,12 +40,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Version changed packages
-        run: |
-          if find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | grep -q .; then
-            npm run version:changed
-          else
-            echo "No changesets found, skipping version"
-          fi
+        run: npm run version:changed
 
       - name: Commit version bumps & push
         run: |
