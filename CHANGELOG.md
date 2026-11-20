@@ -1,5 +1,11 @@
 # ffc-ahwr-common-library
 
+## 3.11.3
+
+### Patch Changes
+
+- b78a519: upgrade joi to 18.3.2
+
 ## 3.11.2
 
 ### Patch Changes
