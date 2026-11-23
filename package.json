@@ -58,7 +58,7 @@
     "knip": "6.45.1",
     "nano-staged": "1.0.2",
     "neostandard": "0.14.1",
-    "prettier": "2.8.8"
+    "prettier": "3.10.1"
   },
   "babel": {
     "plugins": [
