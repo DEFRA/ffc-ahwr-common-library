@@ -1,4 +1,11 @@
+## 3.11.3
+
+### Patch Changes
+
+- d64d836: Update dependencies
+
 ## 3.11.2
+
 b78a519: upgrade joi to 18.3.2
 
 ### Patch Changes
