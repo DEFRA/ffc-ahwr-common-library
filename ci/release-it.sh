@@ -14,7 +14,6 @@ if git rev-parse "$tag" >/dev/null 2>&1; then
 else
   echo "Tag does not exist — running release-it for $tag..."
   (
-    cd "$pkg"
     npx --ignore-scripts release-it@19.0.4 --no-increment --ci || echo "Release-it failed for $tag"
   )
 fi
